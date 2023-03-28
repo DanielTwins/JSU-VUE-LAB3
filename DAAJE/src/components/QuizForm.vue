@@ -48,7 +48,7 @@
                         <AppButton color="light" type="button" @click="addQuestion">Lägg till ny fråga</AppButton>
                     </div>
                     <div class="col-4">
-                        <AppButton color="send" type="submit">Skapa Quiz!</AppButton>
+                        <button type="submit">Skapa Quiz!</button>
                     </div>
                 </div>
 
@@ -80,6 +80,7 @@ import AppButton from './AppButton.vue'
 export default {
     data() {
         return {
+            quizCategory: null,
             showForm: true,
             questions: [
                 //Array där texten kommer från användaren, flerval
