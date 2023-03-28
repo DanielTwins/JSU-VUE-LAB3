@@ -49,7 +49,7 @@
                         <AppButton color="light" type="button" @click="addQuestion">Lägg till ny fråga</AppButton>
                     </div>
                     <div class="col-4">
-                        <AppButton color="light" type="submit">Skapa Quiz!</AppButton>
+                        <AppButton color="send" type="submit">Skapa Quiz!</AppButton>
                     </div>
                 </div>
 
