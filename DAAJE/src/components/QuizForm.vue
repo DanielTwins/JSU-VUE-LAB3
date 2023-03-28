@@ -19,9 +19,9 @@
             <div class="mb-3" v-for="(question, index) in questions" :key="index">
                 <!---Loopar igenom varje question och använder index för att identifiera positionen i varje element-->
                 <label class="form-label" :for="'question-' + index">Fråga, {{ index + 1 }}</label>
-                <input class="form-control mb-5" :id="'question-' + index" type="text" v-model="question.text" required />
+                <input class="form-control mb-4" :id="'question-' + index" type="text" v-model="question.text" required />
 
-                <div v-for="(option, optionIndex) in question.options" :key="optionIndex">
+                <div class="options" v-for="(option, optionIndex) in question.options" :key="optionIndex">
                     <label class="form-label" :for="'option-' + index + '-' + optionIndex">Svars alternativ {{ optionIndex +
                         1 }}:</label>
                     <input class="form-control mb-3" :id="'option-' + index + '-' + optionIndex" type="text"
@@ -47,10 +47,12 @@
             <div class="mb-3">
                 <div class="row">
                     <div class="col-8">
-                        <AppButton color="light" type="button" @click="addQuestion">Lägg till ny fråga</AppButton>
+                        <AppButton class="text-center" color="light" size="medium" padding="p-small" type="button"
+                            @click="addQuestion">Lägg
+                            till ny fråga</AppButton>
                     </div>
                     <div class="col-4">
-                        <button type="submit">Skapa Quiz!</button>
+                        <button class="send-button" type="submit">Skapa Quiz!</button>
                     </div>
                 </div>
 
@@ -59,11 +61,10 @@
         </form>
 
         <!-- Behövs den här funktionen? -->
-        <AppButton color="light" @click="getQuiz">Get Quiz</AppButton>
-
+        <!-- <AppButton color="light" size="medium" padding="p-small" @click="getQuiz">Get Quiz</AppButton> -->
 
         <!-- Är det här kvar från tidigare quiz? -->
-        <ul v-if="quiz">
+        <!-- <ul v-if="quiz">
             <li v-for="(question, index) in quiz.questions" :key="index">
                 <h3>{{ question.text }}</h3>
                 <ul>
@@ -73,7 +74,7 @@
                 </ul>
             </li>
         </ul>
-        <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
+        <div v-if="errorMessage" class="error">{{ errorMessage }}</div> -->
     </div>
 </template>
 
@@ -211,26 +212,39 @@ div {
     color: white
 }
 
-/* .full-width {
+.options {
+    padding: 1rem;
+    border-left: 1px #c164ec solid;
+    border-right: 1px #c164ec solid;
+}
+
+.options:first-of-type {
+    border-top: 1px #c164ec solid;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.options:last-child {
+    border-bottom: 1px #c164ec solid;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.send-button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: aliceblue;
+    color: #5f0a87;
+    text-shadow: .1rem .1rem .1rem #c164ec;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    display: inline-block;
+    text-align: center;
     width: 100%;
-
 }
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 600px;
-}
-
-form input {
-    margin-bottom: 10px;
-}
-
-.m-space {
-    margin: 3rem 0;
-} */
 
 .error {
     color: red;
