@@ -237,7 +237,7 @@ div {
     font-weight: bold;
     background-color: aliceblue;
     color: #5f0a87;
-    text-shadow: .1rem .1rem .1rem #c164ec;
+    box-shadow: .3rem .3rem .1rem #c164ec;
     border: none;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
