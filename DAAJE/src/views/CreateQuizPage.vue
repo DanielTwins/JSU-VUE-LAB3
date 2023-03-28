@@ -5,7 +5,7 @@ import UserAvatar from "../components/UserAvatar.vue";
 
 <template>
   <div class="pt-medium">
-    <UserAvatar :img="imgPath" :userGreeting="userGreeting" :userDesc="userDesc" />
+    <UserAvatar />
     <div class="hero-text">
       <h1>Create your tailored quiz questions</h1>
       <h4>Write the questions and answer options to submit</h4>
