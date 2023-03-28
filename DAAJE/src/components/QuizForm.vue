@@ -22,15 +22,17 @@
                 <input class="form-control mb-5" :id="'question-' + index" type="text" v-model="question.text" required />
 
                 <div v-for="(option, optionIndex) in question.options" :key="optionIndex">
-                    <label class="form-label" :for="'option-' + index + '-' + optionIndex">Svars alternativ, {{ optionIndex
-                        +
-                        1
-                    }}</label>
+                    <label class="form-label" :for="'option-' + index + '-' + optionIndex">Svars alternativ {{ optionIndex +
+                        1 }}:</label>
                     <input class="form-control mb-3" :id="'option-' + index + '-' + optionIndex" type="text"
                         v-model="option.text" required /><!---Använder enkel V-model och binder den till question arrayen-->
                     <input class="mb-4" type="radio" :id="'correct-' + index + '-' + optionIndex" :name="'correct-' + index"
                         v-model="question.correctAnswer" :value="option.id" />
-                    <label class="form-label" :for="'correct-' + index + '-' + optionIndex">Lägg till som rätt svar</label>
+                    <label class="form-label" :for="'correct-' + index + '-' + optionIndex">Lägg till alternativ {{
+                        optionIndex
+                        +
+                        1
+                    }}, som rätt svar.</label>
                 </div>
             </div>
             <!---Quizspråk, låter användaren välja språk -->
@@ -57,7 +59,7 @@
         </form>
 
         <!-- Behövs den här funktionen? -->
-        <!-- <AppButton color="light" @click="getQuiz">Get Quiz</AppButton> -->
+        <AppButton color="light" @click="getQuiz">Get Quiz</AppButton>
 
 
         <!-- Är det här kvar från tidigare quiz? -->
