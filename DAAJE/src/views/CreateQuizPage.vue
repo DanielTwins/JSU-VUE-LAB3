@@ -7,8 +7,8 @@ import UserAvatar from "../components/UserAvatar.vue";
   <div class="pt-medium">
     <UserAvatar />
     <div class="hero-text">
-      <h1>Create your tailored quiz questions</h1>
-      <h4>Write the questions and answer options to submit</h4>
+      <h1>Skapa ditt egna quiz!</h1>
+      <h4>Skriv frågor och lägg till svarsalternativ</h4>
     </div>
     <QuizForm />
   </div>
