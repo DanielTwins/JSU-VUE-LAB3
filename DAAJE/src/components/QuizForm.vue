@@ -34,9 +34,9 @@
                 </div>
             </div>
             <!---Quizspråk, låter användaren välja språk -->
-            <div class="mb-3">
+            <div class="mb-5">
                 <label class="form-label" for="language-select">Language:</label>
-                <select id="language-select" v-model="selectedLanguage">
+                <select class="form-select mb-4" id="language-select" v-model="selectedLanguage">
                     <option v-for="language in languages" :value="language" :key="language">
                         {{ language }}
                     </option>
@@ -44,7 +44,6 @@
             </div>
             <div class="mb-3">
                 <div class="row">
-
                     <div class="col-8">
                         <AppButton color="light" type="button" @click="addQuestion">Lägg till ny fråga</AppButton>
                     </div>
