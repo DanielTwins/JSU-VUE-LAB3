@@ -4,35 +4,37 @@
         <form v-if="showForm" @submit.prevent="submitForm">
 
             <div>
-                <label class="form-label" for="quiz-name">Quiz Name:</label>
+                <label class="form-label" for="quiz-name">Quiz Namn:</label>
                 <input class="form-control mb-3" id="quiz-name" type="text" v-model="quizName" required />
             </div>
             <!---Quizcategory label, låter användaren kategorisera-->
             <div>
-                <label class="form-label mb-4" for="quiz-category">Quiz Category:</label>
+                <label class="form-label mb-4" for="quiz-category">Quiz Kategori:</label>
                 <select class="form-select mb-4" id="quiz-category" v-model="quizCategory">
                     <option v-for="category in categories" :value="category">
                         {{ category }}
                     </option>
                 </select>
             </div>
-            <div v-for="(question, index) in questions" :key="index">
+            <div class="mb-3" v-for="(question, index) in questions" :key="index">
                 <!---Loopar igenom varje question och använder index för att identifiera positionen i varje element-->
-                <label class="form-label" :for="'question-' + index">Question {{ index + 1 }}</label>
-                <input class="form-control mb-4" :id="'question-' + index" type="text" v-model="question.text" required />
+                <label class="form-label" :for="'question-' + index">Fråga, {{ index + 1 }}</label>
+                <input class="form-control mb-5" :id="'question-' + index" type="text" v-model="question.text" required />
 
                 <div v-for="(option, optionIndex) in question.options" :key="optionIndex">
-                    <label class="form-label" :for="'option-' + index + '-' + optionIndex">Option {{ optionIndex + 1
+                    <label class="form-label" :for="'option-' + index + '-' + optionIndex">Svars alternativ, {{ optionIndex
+                        +
+                        1
                     }}</label>
                     <input class="form-control mb-3" :id="'option-' + index + '-' + optionIndex" type="text"
                         v-model="option.text" required /><!---Använder enkel V-model och binder den till question arrayen-->
-                    <input type="radio" :id="'correct-' + index + '-' + optionIndex" :name="'correct-' + index"
+                    <input class="mb-4" type="radio" :id="'correct-' + index + '-' + optionIndex" :name="'correct-' + index"
                         v-model="question.correctAnswer" :value="option.id" />
-                    <label class="form-label" :for="'correct-' + index + '-' + optionIndex">Correct answer</label>
+                    <label class="form-label" :for="'correct-' + index + '-' + optionIndex">Lägg till som rätt svar</label>
                 </div>
             </div>
             <!---Quizspråk, låter användaren välja språk -->
-            <div>
+            <div class="mb-3">
                 <label class="form-label" for="language-select">Language:</label>
                 <select id="language-select" v-model="selectedLanguage">
                     <option v-for="language in languages" :value="language" :key="language">
@@ -40,16 +42,29 @@
                     </option>
                 </select>
             </div>
-            <div>
-                <button type="button" @click="addQuestion">Add Question</button>
-                <button type="submit">Create</button>
+            <div class="mb-3">
+                <div class="row">
+
+                    <div class="col-8">
+                        <AppButton color="light" type="button" @click="addQuestion">Lägg till ny fråga</AppButton>
+                    </div>
+                    <div class="col-4">
+                        <AppButton color="light" type="submit">Skapa Quiz!</AppButton>
+                    </div>
+                </div>
+
             </div>
             <div v-if="errorMessage" class="error">{{ errorMessage }}</div>
         </form>
-        <button @click="getQuiz">Get Quiz</button>
+
+        <!-- Behövs den här funktionen? -->
+        <!-- <AppButton color="light" @click="getQuiz">Get Quiz</AppButton> -->
+
+
+        <!-- Är det här kvar från tidigare quiz? -->
         <ul v-if="quiz">
             <li v-for="(question, index) in quiz.questions" :key="index">
-                <h3>{{ question.text }}sddsds</h3>
+                <h3>{{ question.text }}</h3>
                 <ul>
                     <li v-for="(option, optionIndex) in question.options" :key="optionIndex">
                         {{ option }}
