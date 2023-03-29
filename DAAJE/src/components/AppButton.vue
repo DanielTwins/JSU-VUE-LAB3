@@ -54,6 +54,11 @@ export default {
   color: #5f0a87;
 }
 
+.send {
+  background-color: rgb(85, 168, 12);
+  color: #000000;
+}
+
 .full-width {
   display: inline-block;
   text-align: center;
@@ -84,4 +89,5 @@ export default {
 
 .large {
   font-size: 1.5rem;
-}</style>
+}
+</style>
