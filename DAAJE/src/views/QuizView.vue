@@ -8,13 +8,11 @@ import axios from "axios";
 import ProgressBar from "../components/ProgressBar.vue";
 import UserAvatar from "../components/UserAvatar.vue";
 import TimerComponent from "../components/TimerComponent.vue";
-//import { markRaw, toRaw } from 'vue';
 
 const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
 const studentId = ref(0);
 const showResults = ref(false);
-let fetchedStudentResults = [];
 
 const route = useRoute();
 const paramsId = route.params.id;
