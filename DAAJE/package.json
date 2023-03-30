@@ -1,13 +1,31 @@
 {
-  "name": "daaje",
+  "name": "quiz-app-for-teachers",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "Quiz app for teachers in tech helping them see if the students understand their lecture or need repetition",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohanCodeForFun/quiz-app-for-teachers.git"
+  },
+  "keywords": [
+    "quiz",
+    "app",
+    "teacher",
+    "accelerated",
+    "success"
+  ],
+  "author": "Christopher Rönnberg, Daniel Naseri, Damir Dervovic, Elis Nilsen, Johan Hellberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohanCodeForFun/JSU-VUE-LAB3/issues"
+  },
+  "homepage": "https://github.com/JohanCodeForFun/JSU-VUE-LAB3#readme",
   "extends": [
     "wesbos"
   ],
