@@ -1,5 +1,4 @@
 <script setup>
-import QuizForm from "../components/QuizForm.vue";
 import UserAvatar from "../components/UserAvatar.vue";
 import QuizQuestions from "../components/QuizQuestions.vue";
 
