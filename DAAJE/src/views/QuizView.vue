@@ -14,7 +14,6 @@ const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
 const studentId = ref(0);
 const showResults = ref(false);
-let fetchedStudentResults = [];
 
 const route = useRoute();
 const paramsId = route.params.id;
