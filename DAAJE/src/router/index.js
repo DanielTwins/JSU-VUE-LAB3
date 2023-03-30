@@ -6,7 +6,7 @@ import NotFound from '../views/NotFound.vue';
 import ResultsPage from '../views/ResultsPage.vue';
 import CreateQuizPage from '../views/CreateQuizPage.vue';
 
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import axios from 'axios';
 const result = await axios.get('http://localhost:8080/quiz_questions');
 const quizes = ref(result.data);
