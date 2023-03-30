@@ -1,6 +1,6 @@
 <template>
     <div id="rsltBtn"> 
-        <router-link to="/results" id="btn"><button type="button" @click="showConfetti">Se resultatet</button></router-link>
+        <!-- <button type="button" @click="showConfetti">Se resultatet</button> -->
     </div>
 
 </template>
@@ -9,19 +9,19 @@
     import JSConfetti from 'js-confetti'
 
     export default {
+        props: {
+            sumOfCorrectAnswers: Number
+        },
         name: 'Confetti',
         data() {
-            return {
-                //
-            }
+            return {}
         },
-
         methods: {
             showConfetti() {
                 const jsConfetti = new JSConfetti()
-                if (this.sumOfCorrectAnswers >= 8) { //kanske lägga till procenvis istället för statisk 8
+                if (this.sumOfCorrectAnswers >= 0) {
                     jsConfetti.addConfetti({
-                        confettiRadius: 5,
+                        confettiRadius: 3,
                         confettiColors: [
                             'yellow',
                             'blue',
@@ -39,6 +39,9 @@
                     })
                 }
             }
+        },
+        mounted () {
+            this.showConfetti()
         }
     }
 </script>
