@@ -21,3 +21,12 @@
   backdrop-filter: blur(9px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+body{
+    background-image: linear-gradient(286deg, #a4508b 0%, #5f0a87) !important;
+}
+
+.container{
+    background-color: transparent !important;
+    background-image: none !important;
+}
