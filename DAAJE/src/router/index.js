@@ -2,6 +2,7 @@ import HomePage from "../views/HomePage.vue";
 import AboutPage from "../views/AboutPage.vue";
 import QuizPage from "../views/QuizPage.vue";
 import QuizView from "../views/QuizView.vue";
+import NotFound from "../views/NotFound.vue";
 import ResultsPage from "../views/ResultsPage.vue";
 import CreateQuizPage from "../views/CreateQuizPage.vue";
 
@@ -12,6 +13,7 @@ const routes = [
   { path: "/quiz/:id", component: QuizView },
   { path: "/results", component: ResultsPage },
   { path: "/create-quiz", component: CreateQuizPage },
+  { path: "/:pathMatch(.*)*", component: NotFound },
 ];
 
 export default routes;
