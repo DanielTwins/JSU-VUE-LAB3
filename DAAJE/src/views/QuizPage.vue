@@ -11,6 +11,8 @@ const props = defineProps({
 </script>
 
 <template>
+  <div>
+
   <Suspense>
     <div class="wrapper">
       <section class="pt-medium">
@@ -29,6 +31,8 @@ const props = defineProps({
       </main>
     </div>
   </Suspense>
+</div>
+
 </template>
 
 <style scoped>
