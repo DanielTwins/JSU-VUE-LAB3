@@ -6,8 +6,7 @@ const app        = express();
 const bodyParser = require('body-parser');
 const router     = require('./routes/routes');
 const cors       = require('cors');
-const proxy      = require('express-http-proxy')
-
+const proxy      = require('express-http-proxy');
 
 // all static served content declared here
 
@@ -18,9 +17,9 @@ app.use(express.static('public'));
 
 //  Allow for CORS. Use cors() as middleware to allow for cors on single routes.
 const corsOptions = {
-    origin: 'http://127.0.0.1:5173',
+    origin: '*',
     optionsSuccessStatus: 200 
-  }
+  };
 app.use(cors(corsOptions));
 
 

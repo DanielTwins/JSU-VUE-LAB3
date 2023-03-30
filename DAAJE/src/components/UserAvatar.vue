@@ -1,15 +1,3 @@
-<template>
-  <div class="avatar-wrapper">
-    <div class="avatar-container">
-      <img class="avatar-image" :src="avatarImg" />
-    </div>
-    <div class="avatar-info">
-      <div class="user-info">Hello, Richard </div>
-      <div class="user-info">JavaScript Educator</div>
-    </div>
-  </div>
-</template>
-
 <script>
 import userImage from "../imgs/Richard.jpg";
 
@@ -19,11 +7,22 @@ export default {
       avatarImg: userImage,
     };
   },
-  
-  
-
 };
 </script>
+
+<template>
+  <section class="avatar-wrapper">
+    <div class="avatar-container">
+      <img class="avatar-image" :src="avatarImg" />
+    </div>
+    <div class="avatar-info">
+      <div class="user-info">Hello, Richard </div>
+      <div class="user-info">JavaScript Educator</div>
+    </div>
+  </section>
+</template>
+
+
 <style>
 .avatar-wrapper {
   display: flex;

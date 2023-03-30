@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Writeable server data
+devserver/public/data/sessionUserQuiz.json
+devserver/public/data/sessionResults.json

@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "mock_vue",
     "img": "./src/imgs/Vuejs_Logo_2.svg.png",
     "name": "Vue",
     "questions": [
@@ -155,7 +155,7 @@
         ]
       },
       {
-        "id": 1,
+        "id": 6,
         "text": "Vilket alternativ beskriver en computed property i Vue? ",
         "options": [
           {
@@ -607,15 +607,77 @@
     ]
   },
   {
-    "id": 2,
+    "id": "mock_react",
     "img": "./src/imgs/React-icon.svg.png",
     "name": "React",
-    "questions": []
+    "questions": [
+      {
+        "id": 1,
+        "text": "Vad är React?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "En banan",
+            "isCorrect": false
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "Loop",
+            "isCorrect": false
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "Facebook",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "Dator",
+            "isCorrect": true
+          }
+        ]
+      }
+    ]
   },
   {
-    "id": 3,
+    "id": "mock_js",
     "img": "./src/imgs/native-javascript.png",
     "name": "Native JS",
-    "questions": []
+    "questions": [
+      {
+        "id": 1,
+        "text": "Vad är Java Script?",
+        "options": [
+          {
+            "id": 1,
+            "label": "A",
+            "text": "Kaffe?",
+            "isCorrect": false
+          },
+          {
+            "id": 2,
+            "label": "B",
+            "text": "Text",
+            "isCorrect": false
+          },
+          {
+            "id": 3,
+            "label": "C",
+            "text": "Ett språk",
+            "isCorrect": false
+          },
+          {
+            "id": 4,
+            "label": "D",
+            "text": "Scriptspråk",
+            "isCorrect": true
+          }
+        ]
+      }
+    ]
   }
 ]

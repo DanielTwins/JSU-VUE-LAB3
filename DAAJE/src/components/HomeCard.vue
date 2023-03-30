@@ -1,19 +1,22 @@
 <script setup>
+import { RouterLink } from "vue-router";
 import AppButton from "../components/AppButton.vue";
 </script>
 
 <template>
-  <div class="card text-center">
+  <section class="card text-center">
     <div class="card-body">
       <!-- recive the props from HomePage -->
       <h5 class="card-title">{{ option.cardTitle }}</h5>
       <p class="card-text">{{ option.cardDescription }}</p>
       <!-- reuse custom button with custom properties -->
-      <AppButton color="primary" size="medium" padding="p-large"
-        >{{ option.cardButton }}
-      </AppButton>
+      <router-link :to="option.path">
+        <AppButton color="primary" size="medium" padding="p-large"
+          >{{ option.cardButton }}
+        </AppButton>
+      </router-link>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
