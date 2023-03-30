@@ -82,6 +82,7 @@ const onChoiceSelected = async (isCorrect) => {
 
         <TheResults v-else :studentId="studentId" :quizLength="quizToShow.questions.length"
           :sumOfCorrectAnswers="sumOfCorrectAnswers" />
+        <Confetti v-if="showResults.value == true"/> //vet ej om v if funkar
       </div>
     </main>
   </div>
