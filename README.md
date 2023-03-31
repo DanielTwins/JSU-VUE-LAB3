@@ -15,3 +15,6 @@ This a free full-stack quiz tool that helps you as a teacher (or for self-study)
 Clone the repo. Open the Terminal and cd in to DAAJE. The run "npm install".  Open a second terminal and cd into devserver. Run "npm run dev". Now go back to the first terminal, and run, "npm run dev". Now you should have two servers running locally, both frontend and backend.
 
 Try a quiz. Look at the result. Have fun!
+
+## Want to contribute?
+The Quiz App for Teachers in tech is currently developed by a small team of developers. If you are interested to contribute to this project, we are open to for it! Keep in mind that every contribution would enhance and improve the project as it is. To get started: Fork the repo, add some changes and well take it from there!
