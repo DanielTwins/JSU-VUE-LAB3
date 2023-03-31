@@ -3,6 +3,16 @@ import { useResultStore } from "../stores/resultStore"
 import UserAvatar from "../components/UserAvatar.vue"
 import Chart from 'chart.js/auto'
 
+const ShadowPlugin = {
+  beforeDraw: (chart) => {
+    const { ctx } = chart;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = -10;
+    ctx.shadowOffsetY = -5;
+  }
+};
+
 export default {
 	components: {
 		UserAvatar
@@ -91,7 +101,8 @@ export default {
 						}
 					}
 				}
-			}
+			},
+            plugins: [ShadowPlugin]
 		})
 		MyChart;
 	}
@@ -106,7 +117,9 @@ export default {
 				<h1 class="mb-2 mt-2">Total results for this quiz</h1>
 
 				<main class="main-content">
-					<canvas id="myChart"></canvas>
+                    <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
 
 					<div class="sum-results">
 						<h4 class="mb-4">Totalt {{ totalCorrectAnswers }} rätt,

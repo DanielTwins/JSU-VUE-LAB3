@@ -1,7 +1,15 @@
 <script>
 import Chart from 'chart.js/auto'
 import { useResultStore } from '../stores/resultStore'
-
+const ShadowPlugin = {
+  beforeDraw: (chart) => {
+    const { ctx } = chart;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = -10;
+    ctx.shadowOffsetY = -5;
+  }
+};
 export default {
     name: 'TheResults',
     props: {
@@ -38,10 +46,23 @@ export default {
                         data: [this.sumOfCorrectAnswers, (this.quizLength - this.sumOfCorrectAnswers)],
                         // backgroundColor: "rgba(54,73,93,.5)",
                         // borderColor: "#36495d",
-                        borderWidth: 3,
+                        borderWidth: 3
                     },
                 ],
             },
+            options: {
+				plugins: {
+					legend: {
+						labels: {
+							color: 'white',
+							font: {
+								Size: 18
+							}
+						}
+					}
+				}
+			},
+            plugins: [ShadowPlugin]
         })
         MyChart;
     }
@@ -109,25 +130,5 @@ h3 {
     padding: 1rem 0;
 }
 
-.chart-container{
-    max-width: 300px;
-    margin: 0 auto;
-    margin-bottom: 3rem;
-    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-    background-color: rgba(255, 255, 255, 0.844);
-    /* background-image: linear-gradient(286deg, #a4508b 0%, #5f0a87); */
-    /* border-radius: 100%; */
-    border-radius: 20px;
-    padding: .5rem;
-}
 
-@media (min-width: 425px) {
-    .chart-container{
-        max-width: 400px;
-    }
-}
-
-#myChart{
-    margin: 1rem 0;
-}
 </style>
