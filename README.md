@@ -1,10 +1,10 @@
 # Quiz App for Teachers
-## Homescreen
-[![Quiz App Landing Page](http://jhellberg.com/images/quiz-app-landing-page.jpg)](#)
-
 This quiz app helps teachers track their student progress after the morning lecture, and use it after lunch to check if the students understand most of the lecture, to continue with other parts, or repeat one or two things.
 
 This a free full-stack quiz tool that helps you as a teacher (or for self-study). We are in the proccess of building the Quiz App right now and going to add more quiz questions over the next couple of weeks.
+
+## Homescreen
+[![Quiz App Landing Page](http://jhellberg.com/images/quiz-app-landing-page.jpg)](#)
 
 
 ## Quiz App Result Page
