@@ -1,6 +1,7 @@
 const express           = require("express");
 const router            = express.Router();
 const mwFunction        = require("./middleware");
+const quizController    = require("../controllers/quiz.controller")
 
 // REGISTER OUR ROUTES -------------------------------
 
