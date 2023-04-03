@@ -1,7 +1,7 @@
 {
   "name": "quiz-app-for-teachers",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Quiz app for teachers in tech helping them see if the students understand their lecture or need repetition",
   "type": "module",
   "scripts": {
