@@ -49,6 +49,7 @@ export default {
 </script>
 
 <template>
+<div class="white-bg">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
@@ -82,6 +83,7 @@ export default {
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <style scoped>
