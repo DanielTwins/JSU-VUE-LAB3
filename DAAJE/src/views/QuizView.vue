@@ -55,7 +55,6 @@ const onChoiceSelected = async (isCorrect) => {
     })
       .then(response => {
         resultStore.addResultSum({ response })
-        console.log(response);
       })
       .catch(error => {
         console.log(error);
