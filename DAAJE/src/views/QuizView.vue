@@ -2,19 +2,18 @@
 import { useRoute } from "vue-router";
 import { useResultStore } from "../stores/ResultStore"
 import { ref, computed } from "vue";
+import Confetti from "../components/Confetti.vue";
 import TheQuestion from "../components/TheQuestion.vue";
 import TheResults from "../components/TheResults.vue";
 import axios from "axios";
 import ProgressBar from "../components/ProgressBar.vue";
 import UserAvatar from "../components/UserAvatar.vue";
 import TimerComponent from "../components/TimerComponent.vue";
-//import { markRaw, toRaw } from 'vue';
 
 const currentQuestionIndex = ref(0);
 const sumOfCorrectAnswers = ref(0);
 const studentId = ref(0);
 const showResults = ref(false);
-let fetchedStudentResults = [];
 
 const route = useRoute();
 const paramsId = route.params.id;
@@ -82,6 +81,7 @@ const onChoiceSelected = async (isCorrect) => {
 
         <TheResults v-else :studentId="studentId" :quizLength="quizToShow.questions.length"
           :sumOfCorrectAnswers="sumOfCorrectAnswers" />
+        <Confetti v-if="showResults" :sumOfCorrectAnswers="sumOfCorrectAnswers"/>
       </div>
     </main>
   </div>

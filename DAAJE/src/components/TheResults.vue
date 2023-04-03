@@ -1,7 +1,15 @@
 <script>
 import Chart from 'chart.js/auto'
 import { useResultStore } from '../stores/resultStore'
-
+const ShadowPlugin = {
+  beforeDraw: (chart) => {
+    const { ctx } = chart;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = -10;
+    ctx.shadowOffsetY = -5;
+  }
+};
 export default {
     name: 'TheResults',
     props: {
@@ -38,10 +46,23 @@ export default {
                         data: [this.sumOfCorrectAnswers, (this.quizLength - this.sumOfCorrectAnswers)],
                         // backgroundColor: "rgba(54,73,93,.5)",
                         // borderColor: "#36495d",
-                        borderWidth: 3,
+                        borderWidth: 3
                     },
                 ],
             },
+            options: {
+				plugins: {
+					legend: {
+						labels: {
+							color: 'white',
+							font: {
+								Size: 18
+							}
+						}
+					}
+				}
+			},
+            plugins: [ShadowPlugin]
         })
         MyChart;
     }
@@ -54,7 +75,9 @@ export default {
         <div class="row">
             <div class="col-lg-8">
                 <h3>Resultat av ditt quiz!</h3>
-                <canvas id="myChart"></canvas>
+                <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
                 <h3 class="mb-3">Enskilda resultat av frågor:</h3>
                 <div v-for="(result, index) in results">
                     <h5>Fråga {{ index + 1 }}, {{ result.question.text }}</h5>
@@ -108,4 +131,6 @@ h3 {
     overflow: visible;
     padding: 1rem 0;
 }
+
+
 </style>
