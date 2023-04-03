@@ -1,5 +1,4 @@
 <script setup>
-import QuizForm from "../components/QuizForm.vue";
 import UserAvatar from "../components/UserAvatar.vue";
 import QuizQuestions from "../components/QuizQuestions.vue";
 
@@ -7,10 +6,11 @@ const props = defineProps({
   userName: String,
   userRole: String
 })
-
 </script>
 
 <template>
+  <div>
+
   <Suspense>
     <div class="wrapper">
       <section class="pt-medium">
@@ -29,6 +29,8 @@ const props = defineProps({
       </main>
     </div>
   </Suspense>
+</div>
+
 </template>
 
 <style scoped>

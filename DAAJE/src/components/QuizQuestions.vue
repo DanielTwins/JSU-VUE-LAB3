@@ -14,7 +14,6 @@ export default {
   async setup() {
     const result = await axios.get("http://localhost:8080/quiz_questions");
     const quizes = ref(result.data);
-    console.log(quizes.value);
 
     return { quizes };
   },

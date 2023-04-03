@@ -38,6 +38,7 @@ const goToQuiz = () => {
 .quiz-container {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
   background-color: aliceblue;
   border-radius: 6px;
   padding: 12px;
