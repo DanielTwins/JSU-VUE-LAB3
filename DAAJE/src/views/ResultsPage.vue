@@ -128,7 +128,7 @@ export default {
 							{{ fetchedResultsShortened.length }} inlämande quizzes</h4>
 					</div>
 
-					<div v-for="(result, index) in resultSumArray">
+					<div v-for="(result) in resultSumArray" :key="result.questionId">
 						<h5>{{ result.questionId }}: {{ result.question }}</h5>
 						<p class="mb-5">Elevers svar: {{ result.resultSummary }} rätt av {{
 							fetchedResultsShortened.length }} inkomna svar.</p>
