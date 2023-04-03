@@ -114,7 +114,7 @@ export default {
 		<div class="row">
 			<div class="col">
 				<UserAvatar :userName="userName" :userRole="userRole" />
-				<h1 class="mb-2 mt-2">Total results for this quiz</h1>
+				<h1 class="mb-2 mt-2">Samlade resultat för den här quiz sessionen:</h1>
 
 				<main class="main-content">
                     <div class="chart-container">
