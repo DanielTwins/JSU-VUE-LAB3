@@ -6,7 +6,11 @@ import Footer from "./components/Footer.vue";
   <div class="container">
     <Navbar />
     <Suspense>
-      <RouterView></RouterView>
+      <RouterView v-slot="{Component}">
+        <Transition name="fade" mode="out-in">
+          <component :is="Component" :key="$route.path"></component>
+        </Transition>
+      </RouterView>
     </Suspense>
     <Footer />
   </div>
@@ -25,5 +29,14 @@ export default {
 
   background-color: #a4508b;
   background-image: linear-gradient(286deg, #a4508b 0%, #5f0a87 84%);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
