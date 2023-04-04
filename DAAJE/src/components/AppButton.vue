@@ -19,7 +19,7 @@ export default {
     },
     padding: {
       type: String,
-      defualt: "1rem",
+      default: "1rem",
     },
     width: {
       type: String,
