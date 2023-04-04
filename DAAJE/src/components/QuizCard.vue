@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="quiz-container" @click="goToQuiz">
+    <div class="quiz-container">
       <div class="quiz-info">
         <img :src="quiz.img" alt="" />
         <div class="quiz-detail">
@@ -11,8 +11,10 @@
 
       <!-- <button @click="goToQuiz">Start Quiz!</button> -->
       <div class="mt-small">
-        <AppButton @click="goToQuiz" width="" color="primary" size="small" padding="p-small">Start Quiz!
+        <AppButton @click="goToQuiz" width="" color="primary" size="small" padding="p-small">Start Random Quiz!
         </AppButton>
+        <router-link to="/quiz-category"><AppButton width="" color="primary" size="small" padding="p-small">Create from categories!
+        </AppButton></router-link>
       </div>
     </div>
   </section>
@@ -38,7 +40,6 @@ const goToQuiz = () => {
 .quiz-container {
   display: flex;
   flex-direction: row;
-  cursor: pointer;
   background-color: aliceblue;
   border-radius: 6px;
   padding: 12px;
