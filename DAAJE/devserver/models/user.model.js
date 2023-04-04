@@ -1,0 +1,46 @@
+/* const customQuiz = mongoose => {
+    const Quiz = mongoose.model(
+      "custom_quiz",
+      mongoose.Schema(
+        {
+          id: String,
+          img: String,
+          name: String,
+          questions: Array
+        },
+        { timestamps: true }
+      )
+    );
+  
+    return Quiz;
+  }; */
+const user = mongoose => {
+    const User = mongoose.model(
+      "user",
+      mongoose.Schema(
+        {
+          username: {
+            type: String,
+            trim: true,
+            required: true,
+            unique: true,
+           },
+          email: {
+            type: String,
+            trim: true,
+            required: true,
+            unique: true,
+           },
+          password: {
+            type: String,
+            required: true
+           }
+        },
+        { timestamps: true }
+      )
+    );
+  
+    return User;
+  };
+
+module.exports = user;

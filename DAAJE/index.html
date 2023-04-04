@@ -8,26 +8,8 @@
   </head>
   <body>
     <div id="app"></div>
-    <!-- <button type="submit" onclick="tryPost()">POST</button>
-    <button type="button" onclick="tryGet()">GET</button> -->
     <script type="module" src="/src/main.js"></script>
     <script>
-      function tryPost() {
-        fetch("http://localhost:8080/post/result", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ msg: "this is a test result post!" }),
-        }).then((res) => {
-          console.log(res.json());
-        });
-      }
-      function tryGet() {
-        fetch("http://localhost:8080/quiz_questions").then((res) => {
-          console.log(res.json());
-        });
-      }
     </script>
   </body>
 </html>

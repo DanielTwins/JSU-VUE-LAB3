@@ -6,7 +6,7 @@ const fs 			  = require ("fs");
 const path            = require("path/posix");
 const { v4: uuidv4 }  = require("uuid");
 const querystring 	  = require('querystring');  //query parser only used in middleware functions
-const controller	  = require("../controllers/quiz.controller");
+const controller	  = require("../controllers/controller");
 
 // Declarations
 const dataPath = path.normalize(`${__dirname}/../public/data/`);
