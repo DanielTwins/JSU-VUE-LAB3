@@ -3,6 +3,16 @@ import { useResultStore } from "../stores/resultStore"
 import UserAvatar from "../components/UserAvatar.vue"
 import Chart from 'chart.js/auto'
 
+const ShadowPlugin = {
+  beforeDraw: (chart) => {
+    const { ctx } = chart;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = -10;
+    ctx.shadowOffsetY = -5;
+  }
+};
+
 export default {
 	components: {
 		UserAvatar
@@ -91,7 +101,8 @@ export default {
 						}
 					}
 				}
-			}
+			},
+            plugins: [ShadowPlugin]
 		})
 		MyChart;
 	}
@@ -103,10 +114,12 @@ export default {
 		<div class="row">
 			<div class="col">
 				<UserAvatar :userName="userName" :userRole="userRole" />
-				<h1 class="mb-2 mt-2">Total results for this quiz</h1>
+				<h1 class="mb-2 mt-2">Samlade resultat för den här quiz sessionen:</h1>
 
 				<main class="main-content">
-					<canvas id="myChart"></canvas>
+                    <div class="chart-container">
+                    <canvas id="myChart"></canvas>
+                </div>
 
 					<div class="sum-results">
 						<h4 class="mb-4">Totalt {{ totalCorrectAnswers }} rätt,
@@ -115,7 +128,7 @@ export default {
 							{{ fetchedResultsShortened.length }} inlämande quizzes</h4>
 					</div>
 
-					<div v-for="(result, index) in resultSumArray">
+					<div v-for="(result) in resultSumArray" :key="result.questionId">
 						<h5>{{ result.questionId }}: {{ result.question }}</h5>
 						<p class="mb-5">Elevers svar: {{ result.resultSummary }} rätt av {{
 							fetchedResultsShortened.length }} inkomna svar.</p>

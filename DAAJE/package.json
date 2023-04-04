@@ -1,7 +1,7 @@
 {
   "name": "quiz-app-for-teachers",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Quiz app for teachers in tech helping them see if the students understand their lecture or need repetition",
   "type": "module",
   "scripts": {
@@ -26,16 +26,12 @@
     "url": "https://github.com/JohanCodeForFun/JSU-VUE-LAB3/issues"
   },
   "homepage": "https://github.com/JohanCodeForFun/JSU-VUE-LAB3#readme",
-  "extends": [
-    "wesbos"
-  ],
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "axios": "^1.3.4",
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.0-alpha1",
     "chart.js": "^4.2.1",
-    "eslint-config-wesbos": "^3.2.3",
     "express": "^4.18.2",
     "js-confetti": "^0.11.0",
     "pinia": "^2.0.33",
@@ -44,7 +40,13 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
+    "eslint": "^8.37.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-vue": "^9.10.0",
     "nodemon": "^2.0.20",
+    "prettier": "2.8.7",
     "vite": "^4.1.0"
   }
 }
