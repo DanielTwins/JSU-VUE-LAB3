@@ -32,6 +32,7 @@ const routes = [
     path: '/quiz-category',
     name: 'QuizCategory',
     component: QuizCategory,
+    props: true,
   },
   {
     path: '/quiz/:id',
