@@ -46,22 +46,44 @@ const emitSelectedResult = (question, option) => {
 .option {
   display: flex;
   cursor: pointer;
+  gap: 1rem;
+  /* LA TILL */
+  align-items: baseline;
+  border: 1.5px solid white;
+  border-radius: 40px;
+  transition: background-color ease-in 200ms, transform ease-in 100ms;
+}
+
+.option:hover,
+.option:focus{
+    transform: translate(0, -3px);
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: #5f0a87  0px 4px 0 0;
+    -webkit-box-shadow: #5f0a87  0px 4px 0 0;
+    -moz-box-shadow: #5f0a87  0px 4px 0 0;
+}
+
+.option:active{
+background-color: rgba(255, 255, 255, 0.6);
+    transform: translate(0px, 2px);
+    box-shadow: #5f0a87  0px 0px 0 0;
+    -webkit-box-shadow: #5f0a87  0px 0px 0 0;
+    -moz-box-shadow: #5f0a87  0px 0px 0 0;
 }
 
 .option-label {
   display: flex;
-  align-items: center;
+
+  /* UTKOMMENTERAD */
+  /* align-items: center; */
   justify-content: center;
+
   background-image: linear-gradient(180deg, #5b6aac 0%, #5f0a87 84%);
+  /* LA TILL */
+  margin-top: .6rem;
+  margin-left: .5rem;
   border-radius: 5rem;
   width: 2rem;
   height: 2rem;
-}
-
-.option-value {
-  border-radius: 5rem;
-  color: white;
-  width: 100%;
-  padding: 0 1rem;
 }
 </style>
