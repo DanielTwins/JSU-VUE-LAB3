@@ -10,7 +10,7 @@ router.get("/", function (req, res) {
   res.send(200, "Welcome to the API!");
 });
 /* GET request for quiz content */
-router.get("/quiz_questions", mwFunction.getMockQuestions);
+router.get("/quiz_questions/:id?", controller.getMockQuestions);
 /* POST quiz. Handler fn assigns a uuid to the url and redirects below to continue the request. **OLD fs route** */
 //router.post("/post/create_quiz", mwFunction.assignQuizId, mwFunction.writeNewQuiz);
 // **NEW mongoDB route**
