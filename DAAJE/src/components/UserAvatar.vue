@@ -2,18 +2,22 @@
 import userImage from "../imgs/Richard.jpg";
 import LoginModule from "../components/LogInModule.vue"
 export default {
-    components:{
-        LoginModule
-    },
+  components:{
+      LoginModule
+  },
   data() {
     return {
-        showLogIn : false,
+      showLogin : false,
+      userLoggedIn : false,
       avatarImg: userImage,
     };
   },
   methods:{
-    toggleShowLogIn(){
-        this.showLogIn = !this.showLogIn
+    toggleShowLogin(){
+        this.showLogin = !this.showLogin
+    },
+    logOutUser(){
+        console.log('Loggar ut')
     }
   }
 };
@@ -28,11 +32,12 @@ export default {
       <div class="user-info">Hello, Richard </div>
       <div class="user-info">JavaScript Educator</div>
       <div class="login-user-btn-container">
-        <button @click="toggleShowLogIn" class="login-user-btn">Logga in / Skapa konto</button>
+        <button v-if="!userLoggedIn" @click="toggleShowLogin" class="login-user-btn">Logga in / Skapa konto</button>
+        <button v-if="userLoggedIn" @click="logOutUser" class="logout-user-btn">Logga ut</button>
       </div>
     </div>
   </section>
-  <LoginModule v-show="showLogIn"/>
+  <LoginModule v-show="showLogin"/>
 </template>
 
 
