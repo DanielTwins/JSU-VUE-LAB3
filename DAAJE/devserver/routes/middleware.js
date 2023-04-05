@@ -1,12 +1,12 @@
 // This file contains middleware controller functions for the node server
-// Controller functions for mongoDB interactions are imported from 'controllers'
+// Controller functions for mongoDB interactions are defined in controllers
+// Define additional middleware here
 
 // Imports
 const fs 			  = require ("fs");
 const path            = require("path/posix");
 const { v4: uuidv4 }  = require("uuid");
 const querystring 	  = require('querystring');  //query parser only used in middleware functions
-const controller	  = require("../controllers/controller");
 
 // Declarations
 const dataPath = path.normalize(`${__dirname}/../public/data/`);

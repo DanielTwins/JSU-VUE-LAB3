@@ -1,19 +1,3 @@
-/* const customQuiz = mongoose => {
-    const Quiz = mongoose.model(
-      "custom_quiz",
-      mongoose.Schema(
-        {
-          id: String,
-          img: String,
-          name: String,
-          questions: Array
-        },
-        { timestamps: true }
-      )
-    );
-  
-    return Quiz;
-  }; */
 const user = mongoose => {
     const User = mongoose.model(
       "user",

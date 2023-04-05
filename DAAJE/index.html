@@ -27,11 +27,11 @@
         console.log(fetch("http://localhost:8080/post/create_quiz/642d7db25ca37827d36cb3e9", {
           method: 'POST',
           headers: {"Content-Type": "application/json"},
-          body: JSON.stringify([
+          body: JSON.stringify(
             {
                 "id": "e37646b0-0c36-4c12-8e78-bb3a40d597cf",
                 "img": "/img/placeholder_img.jpg",
-                "name": "Elis2",
+                "name": "Elis3",
                 "questions": [
                     {
                         "text": "adgdag",
@@ -67,7 +67,7 @@
                 "category": "React",
                 "language": "Svenska"
             }
-          ])
+          )
         })
        );
       };

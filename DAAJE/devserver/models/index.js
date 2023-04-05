@@ -8,5 +8,6 @@ const db = {};
 db.mongoose = mongoose;
 db.url = dbConfig.url;
 db.user = require("./user.model.js")(mongoose); // SYNTAX NOTE << require said module with parameter "mongoose". See relevant file for parameter usage.
+db.quiz = require("./quiz.model.js")(mongoose);
 
 module.exports = db;
