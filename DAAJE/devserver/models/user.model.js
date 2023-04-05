@@ -34,7 +34,14 @@ const user = mongoose => {
           password: {
             type: String,
             required: true
-           }
+           },
+          associated: {
+            quiz: Array,
+            students: Array
+           },
+          created: {
+            quiz: Array
+          }
         },
         { timestamps: true }
       )
