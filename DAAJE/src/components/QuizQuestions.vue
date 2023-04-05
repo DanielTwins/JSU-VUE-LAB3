@@ -12,7 +12,8 @@ import { ref } from "vue";
 export default {
   components: { QuizCard },
   async setup() {
-    const result = await axios.get("http://localhost:8080/quiz_questions/642d7db25ca37827d36cb3e9");
+                                                                // provide user id as last parameter to retrieve custom quizes
+    const result = await axios.get("http://localhost:8080/quiz_questions");
     const quizes = ref(result.data);
 
     return { quizes };
