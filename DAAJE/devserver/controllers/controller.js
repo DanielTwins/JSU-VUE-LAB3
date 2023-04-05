@@ -1,16 +1,42 @@
 // controller functions for mongodb
 
 const db = require("../models");
-const user = db.models;
+const User = db.user;
 
-// Create and Save a new Quiz
-exports.createQuiz = (req, res) => {
-    
+// Create and Save a new Quiz to a specific user. User Id should be parameter provided.
+exports.findUser = async(req, res) => {
+    const id = req.params.id;
+    const _user = await User.findById(id)
+        .then(data => {
+            if (!data) { 
+                res.status(404).send({ message: `User with id: ${id} could not be found`}); 
+            } else { return data; }
+            })
+        .catch(err => {
+            res.status(500).send({ message: `Error retrieving user with id: ${id}` });
+        });    
+    console.log(`Found user: ${_user}`);
+    res.status(200).send(_user);
+};
+// Create a new quiz and embed
+exports.createQuiz = async(req, res) => {
+    const id = req.params.id;
+    const _user = await User.findById(id)
+        .then(data => {
+            if (!data) { 
+                res.status(404).send({ message: `User with id: ${id} could not be found`}); 
+            } else { return data; }
+            })
+        .catch(err => {
+            res.status(500).send({ message: `Error retrieving user with id: ${id}` });
+        });    
+    _user.created.quiz.push(req.body);
+    res.status(200).send(await _user.save());
 };
 // Create a new user
 exports.createUser = (req, res) => {
     console.log("user request recieved!");
-    const _user = new user({
+    const _user = new User({
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
@@ -23,18 +49,14 @@ exports.createUser = (req, res) => {
         .catch(err => {
             res.status(500).send({
             message:
-                err.message || "Some error occurred while creating the User."
+                err.message || "Some error occurred while creating the user."
             })
         });
 };
 
-// Retrieve all Quiz from the database.
-exports.findAll = (req, res) => {
 
-};
-
-// Find a single Quiz with an id
-exports.findOne = (req, res) => {
+// Find a single users id with username or email
+exports.findUserID = (req, res) => {
   
 };
 

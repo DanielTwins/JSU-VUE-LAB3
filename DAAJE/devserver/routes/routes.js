@@ -11,14 +11,10 @@ router.get("/", function (req, res) {
 });
 /* GET request for quiz content */
 router.get("/quiz_questions", mwFunction.getMockQuestions);
-/* POST default handling */
-router.post("/post", function (req, res) {
-  console.log("post recieved");
-  console.log(req.body);
-  res.json({ status: "200 OK", content: req.body });
-});
-/* POST quiz. Handler fn assigns a uuid to the url and redirects below to continue the request */
-router.post("/post/create_quiz", mwFunction.assignQuizId, mwFunction.writeNewQuiz);
+/* POST quiz. Handler fn assigns a uuid to the url and redirects below to continue the request. **OLD fs route** */
+//router.post("/post/create_quiz", mwFunction.assignQuizId, mwFunction.writeNewQuiz);
+// **NEW mongoDB route**
+router.post("/post/create_quiz/:id", controller.createQuiz);
 /* POST and send compiled stundent result data */
 router.post("/post/result", mwFunction.recieveResult, mwFunction.sendResults); // **remember to listen for "id" query if needed**
 /* POST create a new user in mongoDB from the register form */
