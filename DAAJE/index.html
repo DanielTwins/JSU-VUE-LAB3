@@ -8,7 +8,7 @@
   </head>
   <body>
     <div id="app"></div>
-    <button type="button" onclick="findUser()">Try to find sample database user</button>
+    <button type="button" onclick="findUser()">add custom quiz</button>
     <button type="button" onclick="createUser()">Create a new user</button>
     <script type="module" src="/src/main.js"></script>
     <script>
@@ -23,8 +23,8 @@
           })
         }));
       }
-      function findUser() {
-        console.log(fetch("http://localhost:8080/post/create_quiz/642d7db25ca37827d36cb3e9", {
+      function findUser() {                                     //logged in uid required in request
+        console.log(fetch("http://localhost:8080/post/create_quiz/642ecea4a038a496cce707cc", {
           method: 'POST',
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(

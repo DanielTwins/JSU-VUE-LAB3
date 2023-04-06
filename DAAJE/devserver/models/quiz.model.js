@@ -3,11 +3,14 @@ const mockQuiz = mongoose => {
       "mock_quiz",
       mongoose.Schema(
         {
-          id: String,
+          _id: Number,
           img: String,
           name: String,
           questions: Array,
           published: Boolean
+        },
+        {
+          _id: true
         }
       )
     );
