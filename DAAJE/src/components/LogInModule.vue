@@ -243,7 +243,7 @@ button {
 .input-value {
   border-radius: 10px;
   border: none;
-  padding: 0.5rem;
+  padding: .7rem;
 }
 
 .submit-btn-container {
