@@ -13,6 +13,8 @@ export default {
     };
   },
   methods:{
+    received(boolean) {this.showLogin = boolean}
+    ,
     toggleShowLogin(){
         this.showLogin = !this.showLogin
     },
@@ -37,7 +39,7 @@ export default {
       </div>
     </div>
   </section>
-  <LoginModule v-show="showLogin"/>
+  <LoginModule @booleanToParent="received" v-show="showLogin"/>
 </template>
 
 

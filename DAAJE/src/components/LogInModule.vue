@@ -14,11 +14,15 @@ export default {
     };
   },
   methods: {
+    showLogin(boolean) {this.$emit('booleanToParent', boolean);
+    },
     handleSignIn(){
         console.log(`Användarnamn ${this.userName}Epost ${this.signEmail}, lösenord ${this.signPassword}`);
+        this.showLogin(false)
     },
     handleLogIn() {
       console.log(`Epost ${this.email}, lösenord ${password}`);
+      this.showLogin(false)
     },
     signingIn() {
         this.logIn = !this.logIn
@@ -33,7 +37,7 @@ export default {
 <template>
   <div class="login-container">
     <div class="direction-btn-container">
-      <button v-show="logIn" @click="toggleShow" class="direction-btn">X</button>
+      <button v-show="logIn" @click="showLogin(false)" class="direction-btn">X</button>
       <button v-show="!logIn" @click="signingIn" class="direction-btn">Tillbaka</button>
     </div>
 
