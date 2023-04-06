@@ -3,6 +3,7 @@
 const db = require("../models");
 const User = db.user;
 const Quiz = db.quiz;
+//use db.mongoose for db methods
 
 // Get all data from a specific user id provided by param
 async function findUserQuiz(id) {
@@ -46,11 +47,9 @@ exports.createUser = (req, res) => {
             res.send(data);
         })
         .catch(err => {
-            console.log("error 500 caught");
             res.status(500).send({
-            message:
-                err.message || "Some error occurred while creating the user."
-            })
+                message: err.message || "Some error occurred while creating the user."
+            });
         });
 };
 // Get all mock quizes

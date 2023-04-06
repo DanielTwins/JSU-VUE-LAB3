@@ -9,20 +9,8 @@
   <body>
     <div id="app"></div>
     <button type="button" onclick="findUser()">add custom quiz</button>
-    <button type="button" onclick="createUser()">Create a new user</button>
     <script type="module" src="/src/main.js"></script>
     <script>
-      function createUser() {
-        console.log(fetch("http://localhost:8080/post/new_user", {
-          method: "POST",
-          headers: {"Content-type": "application/json"},
-          body: JSON.stringify({
-            username: "newell2",
-            email: "mail@mail.se",
-            password: "1234"
-          })
-        }));
-      }
       function findUser() {                                     //logged in uid required in request
         console.log(fetch("http://localhost:8080/post/create_quiz/642ecea4a038a496cce707cc", {
           method: 'POST',

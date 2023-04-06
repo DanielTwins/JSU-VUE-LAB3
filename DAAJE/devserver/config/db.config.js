@@ -1,5 +1,5 @@
 // Config the database
 
 module.exports = {
-    url: "mongodb+srv://elisnilzen:BhOEQR023cFfaWaK@daaje.vaas7ut.mongodb.net/DAAJE"
+    url: `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@daaje.vaas7ut.mongodb.net/DAAJE`
   };
