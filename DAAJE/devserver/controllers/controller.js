@@ -29,6 +29,7 @@ exports.createQuiz = async(req, res) => {
                 res.status(500).send({ message: `Error retrieving user with id: ${id}` });
             }
         );    
+    req.body._id = 
     _user.created.quiz.push(req.body); //vanilla js "push" is used on the provided db object. Consider using mongodb operators directly.
     res.status(200).send(await _user.save());
 };
