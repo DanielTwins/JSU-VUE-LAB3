@@ -1,4 +1,6 @@
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -18,6 +20,11 @@ export default {
     },
     handleSignIn(){
         console.log(`Användarnamn ${this.userName}Epost ${this.signEmail}, lösenord ${this.signPassword}`);
+        axios.post("http://localhost:8080/post/new_user", {
+            username: this.userName,
+            email: this.signEmail,
+            password: this.userName
+          });
         this.showLogin(false)
     },
     handleLogIn() {
