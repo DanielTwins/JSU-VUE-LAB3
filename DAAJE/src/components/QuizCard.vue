@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="quiz-container" @click="goToQuiz">
+    <div class="quiz-container">
       <div class="quiz-info">
         <img :src="quiz.img" alt="" />
         <div class="quiz-detail">
@@ -11,7 +11,13 @@
 
       <!-- <button @click="goToQuiz">Start Quiz!</button> -->
       <div class="mt-small">
-        <AppButton @click="goToQuiz" width="" color="primary" size="small" padding="p-small">Start Quiz!
+        <AppButton @click="goToQuiz" width="" color="primary" size="small" padding="p-small">Start Random Quiz!
+        </AppButton>
+
+        <!-- adding router push -->
+        <!-- @click="$router.push({ name: "QuizCategory", params: { quiz: this.quiz }})"  -->
+        <AppButton 
+        width="" color="primary" size="small" padding="p-small">Create from categories!
         </AppButton>
       </div>
     </div>
@@ -21,6 +27,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import AppButton from "../components/AppButton.vue";
+import QuizCategoryComp from "./QuizCategoryComp.vue";
 
 const { quiz } = defineProps(["quiz"]);
 const router = useRouter();
@@ -38,7 +45,6 @@ const goToQuiz = () => {
 .quiz-container {
   display: flex;
   flex-direction: row;
-  cursor: pointer;
   background-color: aliceblue;
   border-radius: 6px;
   padding: 12px;
