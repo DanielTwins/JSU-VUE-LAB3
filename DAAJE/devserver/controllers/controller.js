@@ -1,59 +1,72 @@
 // controller functions for mongodb
 
 const db = require("../models");
-const user = db.models;
+const User = db.user;
+const Quiz = db.quiz;
+//use db.mongoose for db methods
 
-// Create and Save a new Quiz
-exports.createQuiz = (req, res) => {
-    
+// Get all data from a specific user id provided by param
+async function findUserQuiz(id) {
+    const _user = await User.findById(id)
+        .then(data => {
+            if (!data) { 
+                console.log(`User with id: ${id} could not be found`); 
+            } else { return data; }
+            })
+        .catch(err => {
+            console.log(`Error retrieving user with id: ${id}`);
+        });    
+    return _user.created.quiz;
+};
+// Create a new quiz and embed
+exports.createQuiz = async(req, res) => {
+    const id = req.params.id;
+    const _user = await User.findById(id)
+        .then(data => {
+            if (!data) { 
+                res.status(404).send({ message: `User with id: ${id} could not be found`}); 
+            } else { return data; }})
+            .catch(err => {
+                res.status(500).send({ message: `Error retrieving user with id: ${id}` });
+            }
+        );    
+    //req.body._id = 
+    _user.created.quiz.push(req.body); //vanilla js "push" is used on the provided db object. Consider using mongodb operators directly.
+    res.status(200).send(await _user.save());
 };
 // Create a new user
 exports.createUser = (req, res) => {
     console.log("user request recieved!");
-    const _user = new user({
+    const _user = new User({
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
     });
-    console.log(_user);
     _user.save(_user)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-            message:
-                err.message || "Some error occurred while creating the User."
-            })
+                message: err.message || "Some error occurred while creating the user."
+            });
         });
 };
-
-// Retrieve all Quiz from the database.
-exports.findAll = (req, res) => {
-
-};
-
-// Find a single Quiz with an id
-exports.findOne = (req, res) => {
-  
-};
-
-// Update a Quiz by the id in the request
-exports.update = (req, res) => {
-  
-};
-
-// Delete a Quiz with the specified id in the request
-exports.delete = (req, res) => {
-  
-};
-
-// Delete all Quizs from the database.
-exports.deleteAll = (req, res) => {
-  
-};
-
-// Find all published Quizs
-exports.findAllPublished = (req, res) => {
-  
-};
+// Get all mock quizes
+exports.getMockQuestions = async(req, res) => {
+    // retrieve all mock quizes
+    const quizes = await Quiz.find()
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving tutorials."
+            });
+        });
+    // if a user id parameter is provided in the request; push all custom quizes associated with that user and return the data
+    if(req.params.id) {
+        const userQuizes = await findUserQuiz(req.params.id);
+        for(let i of userQuizes) {
+            quizes.push(i);
+        }
+    }
+    res.status(200).send(quizes);
+}; 
