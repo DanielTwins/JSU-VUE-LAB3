@@ -28,4 +28,4 @@ devserver/public/data/sessionUserQuiz.json
 devserver/public/data/sessionResults.json
 
 # Env variables
-devserver/config.env
+devserver/.env

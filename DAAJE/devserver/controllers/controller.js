@@ -3,6 +3,7 @@
 const db = require("../models");
 const User = db.user;
 const Quiz = db.quiz;
+//use db.mongoose for db methods
 
 // Get all data from a specific user id provided by param
 async function findUserQuiz(id) {
@@ -29,7 +30,7 @@ exports.createQuiz = async(req, res) => {
                 res.status(500).send({ message: `Error retrieving user with id: ${id}` });
             }
         );    
-    req.body._id = 
+    //req.body._id = 
     _user.created.quiz.push(req.body); //vanilla js "push" is used on the provided db object. Consider using mongodb operators directly.
     res.status(200).send(await _user.save());
 };
@@ -41,16 +42,14 @@ exports.createUser = (req, res) => {
         email: req.body.email,
         password: req.body.password
     });
-    console.log(_user);
     _user.save(_user)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-            message:
-                err.message || "Some error occurred while creating the user."
-            })
+                message: err.message || "Some error occurred while creating the user."
+            });
         });
 };
 // Get all mock quizes
