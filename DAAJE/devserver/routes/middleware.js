@@ -1,26 +1,24 @@
-//	Imports
+// This file contains middleware controller functions for the node server
+// Controller functions for mongoDB interactions are defined in controllers
+// Define additional middleware here
+
+// Imports
 const fs 			  = require ("fs");
-//const fsp			  = require ("fs").promises; //if using fs promises API
 const path            = require("path/posix");
 const { v4: uuidv4 }  = require("uuid");
 const querystring 	  = require('querystring');  //query parser only used in middleware functions
 
-//	Declarations
+// Declarations
 const dataPath = path.normalize(`${__dirname}/../public/data/`);
 						//sync fn used here for only for server setup(serving mock questions). Use async for further db handling.
 const mockQuestions = fs.readFileSync(path.join(dataPath, 'quizQuestions.json'));
 const isVerified = (req) => {/* verify caller fn and return bool */};
-const createDynamicReplacer = (postObj) => {/* Use recursion to iterate the incoming [{}] and return a string[] of all properties
-											   and nested properties for the replacer*/
-	return Object.getOwnPropertyNames(postObj);
-};
-//TODO
 const findDatabaseObject = (fileName) => { //search the db folders and return the path to the dir which contains the file
 	if(typeof fileName != "string") { return console.log("Type error. The value passed was not of type: string");}
 	return path.join(dataPath, fileName);
 };
 
-//  Main export body
+//  middleware functions
 const mwFunctions = {
 	headers(req, res, next) {
 			let origin = 'http://localhost:8080';

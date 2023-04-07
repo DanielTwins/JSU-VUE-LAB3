@@ -1,6 +1,7 @@
 import HomePage from '../views/HomePage.vue';
 import AboutPage from '../views/AboutPage.vue';
 import QuizPage from '../views/QuizPage.vue';
+import QuizCategory from '../views/QuizCategory.vue';
 import QuizView from '../views/QuizView.vue';
 import NotFound from '../views/NotFound.vue';
 import ResultsPage from '../views/ResultsPage.vue';
@@ -26,6 +27,12 @@ const routes = [
     path: '/quiz',
     name: 'QuizPage',
     component: QuizPage,
+  },
+  {
+    path: '/quiz-category',
+    name: 'QuizCategory',
+    component: QuizCategory,
+    props: true,
   },
   {
     path: '/quiz/:id',
