@@ -18,7 +18,7 @@ import ContactUs from "../components/ContactUs.vue";
                         learning and upskilling are crucial to success, and
                         we strive to deliver innovative technologies that
                         enable people to learn more efficiently and
-                        effectively.
+                        effectively.</p>
                     <p> We
                         believe that learning should be accessible to all,
                         regardless of background, age, or level of
@@ -42,7 +42,6 @@ import ContactUs from "../components/ContactUs.vue";
                         seeking to enhance your skills, or a company looking
                         to train your workforce, our learning apps are the
                         perfect tool to help you achieve your objectives.</p>
-                    </p>
                 </div>
             </main>
         </div>
@@ -50,7 +49,6 @@ import ContactUs from "../components/ContactUs.vue";
         <ContactUs />
     </div>
 </template>
-
 
 <style scoped>
 .user-avatar-filler {
