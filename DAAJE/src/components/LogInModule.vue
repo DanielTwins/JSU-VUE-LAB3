@@ -20,7 +20,6 @@ export default {
       this.$emit('booleanToParent', boolean);
     },
     handleSignIn(){
-        console.log(`Användarnamn ${this.userName}Epost ${this.signEmail}, lösenord ${this.signPassword}`);
         axios.post("http://localhost:8080/post/new_user", {
             username: this.userName,
             email: this.signEmail,
@@ -29,7 +28,12 @@ export default {
         this.showLogin(false)
     },
     handleLogIn() {
-      console.log(`Epost ${this.email}, lösenord ${password}`);
+      console.dir(axios.post("http://localhost:8080/post/login", 
+          {
+            email: this.email,
+            password: this.password
+          })
+      );
       this.showLogin(false);
     },
     signingIn() { /* byt vy mellan signin/login */

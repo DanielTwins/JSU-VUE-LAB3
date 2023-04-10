@@ -27,7 +27,8 @@ const user = mongoose => {
             quiz: Array
           }
         },
-        { timestamps: true }
+        { timestamps: true },
+        { strict: false }
       )
     );
   

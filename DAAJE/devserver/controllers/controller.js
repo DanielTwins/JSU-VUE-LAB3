@@ -1,10 +1,50 @@
 // controller functions for mongodb
 
+// mongodb
 const db = require("../models");
 const User = db.user;
 const Quiz = db.quiz;
-//use db.mongoose for db methods
+// passport
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
+// use definitions
+passport.use(
+    new LocalStrategy({usernameField: "email"}, async(email, password, done) => {
+        try {
+            const user = await User.findOne({ email: email });
+            if (!user) {
+                return done(null, false, { message: "Incorrect e-mail" })
+            };
+            if (user.password !== password) {
+                return done(null, false, { message: "Incorrect password" })
+            };
+            return done(null, user);
+        } catch(err) { 
+            return done(err); 
+        }
+    })
+  );
+passport.serializeUser((user, done) => {
+    console.log("serialize called");
+    console.log(user.id);
+    done(null, user.id);
+});
+passport.deserializeUser((id, done) => {
+    console.log("deserialize called");
+    console.log(id);
+    try {
+        User.findById(id, (err, user) => {
+            done(err, user)
+        });
+    } catch(err) {
+        done(err);
+    };
+});
+
+//**use db.mongoose for generic db methods**
+
+// Functions
 // Get all data from a specific user id provided by param
 async function findUserQuiz(id) {
     const _user = await User.findById(id)
@@ -70,3 +110,27 @@ exports.getMockQuestions = async(req, res) => {
     }
     res.status(200).send(quizes);
 }; 
+exports.login = (req, res, next) => {   
+    console.log(req.session);
+    // fails here. deserialize does not get called
+    passport.authenticate("local", function(err, user, info) {
+        console.log(user);
+        if(err) {
+            return res.status(400).send(err);
+        }
+        if(!user) {
+            //issue here
+            console.log("here");
+            return res.status(400).send({msg: err});
+        }
+        req.logIn(user, function(err) {
+            if(err) { 
+                
+                return res.status(500).send(err); 
+            }
+            console.log("success auth for " + req.user);
+            return res.status(200).send(user.id);
+        });
+    })(req, res, next);
+};
+exports.passport = passport;

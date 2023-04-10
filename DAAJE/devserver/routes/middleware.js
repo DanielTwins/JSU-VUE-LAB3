@@ -123,7 +123,7 @@ const mwFunctions = {
 			if(err) { return console.log(`Error: ${err}`) }
 			res.status(200).send(JSON.parse([data]));
 		});
-	},
+	}
 };
 
 module.exports = mwFunctions;
