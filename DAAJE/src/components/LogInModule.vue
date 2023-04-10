@@ -32,7 +32,7 @@ export default {
       console.log(`Epost ${this.email}, lösenord ${password}`);
       this.showLogin(false);
     },
-    signingIn() {
+    signingIn() { /* byt vy mellan signin/login */
       this.logIn = !this.logIn;
     },
     forgotPassword() {
