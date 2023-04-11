@@ -77,7 +77,11 @@ export default {
             <canvas id="myChart"></canvas>
           </div>
           <h3 class="mb-4">Enskilda resultat av frågor:</h3>
-          <div v-for="(result, index) in results" :key="index" class="mb-4 question">
+          <div
+            v-for="(result, index) in results"
+            :key="index"
+            class="mb-4 question"
+          >
             <h5>Fråga {{ index + 1 }}, {{ result.question.text }}</h5>
             <p>
               Rätt svar:
@@ -142,14 +146,15 @@ h3 {
 }
 
 .question {
-    border: 3px pink dotted;
-    border-radius: 5px;
-    padding: .5rem;
+  border: 3px #5f0a87 dotted;
+  border-radius: 10px;
+  padding: 0.5rem;
 }
 
 .whyCorrect {
-    background-color: pink;
-    border-radius: 5px;
-    padding: .5rem;
+  color: white;
+  background-color: #5f0a87;
+  border-radius: 10px;
+  padding: 0.5rem;
 }
 </style>
