@@ -19,7 +19,7 @@
             "label": "B",
             "text": "Ett progressivt JavaScript-ramverk",
             "isCorrect": true,
-            "WhyCorrect": "Vue kallas ett progressivt JavaScript-ramverk för att det ständingt förändras och uppdateras och skapat för att göra dynamiska UI & SPA."
+            "whyCorrect": "Vue kallas ett progressivt JavaScript-ramverk för att det ständingt förändras och uppdateras och skapat för att göra dynamiska UI & SPA."
           },
           {
             "id": 3,
@@ -50,7 +50,7 @@
             "label": "B",
             "text": "En abstraktion av den faktiska DOM:en",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 3,
@@ -93,7 +93,7 @@
             "label": "D",
             "text": "<template>  <script>  <style>",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           }
         ]
       },
@@ -106,7 +106,7 @@
             "label": "A",
             "text": "Vue använder en virtuell DOM  medan React inte gör det",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 2,
@@ -155,7 +155,7 @@
             "label": "D",
             "text": "Axios",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           }
         ]
       },
@@ -174,7 +174,7 @@
             "label": "B",
             "text": "En funktion som beräknar och returnerar ett värde baserat på en eller flera egenskaper",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 3,
@@ -199,7 +199,7 @@
             "label": "A",
             "text": "v-bind används för att binda ett värde till en elements attribut  medan v-model används för tvåvägs dataväxling mellan en formulärkomponent och dess datamodell",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 2,
@@ -236,7 +236,7 @@
             "label": "B",
             "text": "En abstraktion av en HTML-element som kan återanvändas och definieras med egen logik och utseende",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 3,
@@ -267,7 +267,7 @@
             "label": "B",
             "text": "En egenskap som lagrar dynamisk data som uppdateras av användaren",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 3,
@@ -292,7 +292,7 @@
             "label": "A",
             "text": "Det används för att rendera en block av kod flera gånger baserat på en array av data",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 2,
@@ -329,7 +329,7 @@
             "label": "B",
             "text": "Components",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 3,
@@ -354,7 +354,7 @@
             "label": "A",
             "text": "Method",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 2,
@@ -385,7 +385,7 @@
             "label": "A",
             "text": "v-bind",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 2,
@@ -422,7 +422,7 @@
             "label": "B",
             "text": "Ett bibliotek för att hantera statisk data i Vue-komponenter",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 3,
@@ -447,7 +447,7 @@
             "label": "A",
             "text": "v-on",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 2,
@@ -490,7 +490,7 @@
             "label": "C",
             "text": "v-for",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 4,
@@ -509,7 +509,7 @@
             "label": "A",
             "text": "Återanvändbarhet",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 2,
@@ -540,7 +540,7 @@
             "label": "A",
             "text": "Axios",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 2,
@@ -583,7 +583,7 @@
             "label": "C",
             "text": "Mer flexibilitet",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           },
           {
             "id": 4,
@@ -620,7 +620,7 @@
             "label": "D",
             "text": "reactive",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           }
         ]
       }
@@ -658,7 +658,7 @@
             "label": "D",
             "text": "Dator",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           }
         ]
       }
@@ -696,7 +696,7 @@
             "label": "D",
             "text": "Scriptspråk",
             "isCorrect": true,
-            "WhyCorrect": "..." 
+            "whyCorrect": "..." 
           }
         ]
       }
