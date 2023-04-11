@@ -77,7 +77,7 @@ export default {
             <canvas id="myChart"></canvas>
           </div>
           <h3 class="mb-4">Enskilda resultat av frågor:</h3>
-          <div v-for="(result, index) in results" :key="index" class="mb-4">
+          <div v-for="(result, index) in results" :key="index" class="mb-4 question">
             <h5>Fråga {{ index + 1 }}, {{ result.question.text }}</h5>
             <p>
               Rätt svar:
@@ -101,7 +101,7 @@ export default {
               Du valde: {{ result.option.label }}.
               {{ result.option.text }}
             </p>
-            <div class="pb-3" v-if="!result.option.isCorrect">
+            <div class="pb-3 whyCorrect" v-if="!result.option.isCorrect">
               <p>Anledning till rätt svar,</p>
               <p>
                 {{
@@ -139,5 +139,17 @@ h3 {
   align-items: center;
   overflow: visible;
   padding: 1rem 0;
+}
+
+.question {
+    border: 3px pink dotted;
+    border-radius: 5px;
+    padding: .5rem;
+}
+
+.whyCorrect {
+    background-color: pink;
+    border-radius: 5px;
+    padding: .5rem;
 }
 </style>
