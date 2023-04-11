@@ -13,6 +13,7 @@ export default {
       userName: '',
       signEmail: '',
       signPassword: '',
+      loggedInStatus: false
     };
   },
   methods: {
@@ -27,13 +28,18 @@ export default {
           });
         this.showLogin(false)
     },
-    handleLogIn() {
-      console.dir(axios.post("http://localhost:8080/post/login", 
+    async handleLogIn() {
+      const usertoken = await axios.post("http://localhost:8080/post/login", 
           {
             email: this.email,
             password: this.password
-          })
+          }
       );
+      if(usertoken) { 
+        localStorage.setItem('usertoken', usertoken.data); // store this in pinia instead? @johan
+        this.$loggedInStatus = true; // this bool is for tracking logged in status
+        // call methods here to update GUI with user details @chris
+      } 
       this.showLogin(false);
     },
     signingIn() { /* byt vy mellan signin/login */

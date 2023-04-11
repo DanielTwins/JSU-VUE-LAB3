@@ -28,18 +28,15 @@ passport.use(
 passport.serializeUser((user, done) => {
     console.log("serialize called");
     console.log(user.id);
+    console.log("serialize exit");
     done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
     console.log("deserialize called");
     console.log(id);
-    try {
-        User.findById(id, (err, user) => {
+    User.findById(id, (err, user) => {
             done(err, user)
         });
-    } catch(err) {
-        done(err);
-    };
 });
 
 //**use db.mongoose for generic db methods**
@@ -110,27 +107,4 @@ exports.getMockQuestions = async(req, res) => {
     }
     res.status(200).send(quizes);
 }; 
-exports.login = (req, res, next) => {   
-    console.log(req.session);
-    // fails here. deserialize does not get called
-    passport.authenticate("local", function(err, user, info) {
-        console.log(user);
-        if(err) {
-            return res.status(400).send(err);
-        }
-        if(!user) {
-            //issue here
-            console.log("here");
-            return res.status(400).send({msg: err});
-        }
-        req.logIn(user, function(err) {
-            if(err) { 
-                
-                return res.status(500).send(err); 
-            }
-            console.log("success auth for " + req.user);
-            return res.status(200).send(user.id);
-        });
-    })(req, res, next);
-};
 exports.passport = passport;
