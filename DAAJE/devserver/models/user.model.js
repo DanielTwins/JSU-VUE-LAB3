@@ -25,6 +25,9 @@ const user = mongoose => {
            },
           created: {
             quiz: Array
+          },
+          results: {
+            type: Array
           }
         },
         { timestamps: true },

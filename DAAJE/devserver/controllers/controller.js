@@ -1,12 +1,12 @@
 // controller functions for mongodb
 
+// passport
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 // mongodb
 const db = require("../models");
 const User = db.user;
 const Quiz = db.quiz;
-// passport
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 
 // use definitions
 passport.use(
@@ -26,14 +26,9 @@ passport.use(
     })
   );
 passport.serializeUser((user, done) => {
-    console.log("serialize called");
-    console.log(user.id);
-    console.log("serialize exit");
     done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
-    console.log("deserialize called");
-    console.log(id);
     User.findById(id, (err, user) => {
             done(err, user)
         });
@@ -67,7 +62,7 @@ exports.createQuiz = async(req, res) => {
                 res.status(500).send({ message: `Error retrieving user with id: ${id}` });
             }
         );    
-    //req.body._id = 
+    // create and use a custom quiz schema model to assign _id fields to all new quizes
     _user.created.quiz.push(req.body); //vanilla js "push" is used on the provided db object. Consider using mongodb operators directly.
     res.status(200).send(await _user.save());
 };
@@ -95,7 +90,7 @@ exports.getMockQuestions = async(req, res) => {
     const quizes = await Quiz.find()
         .catch(err => {
             res.status(500).send({
-                message: err.message || "Some error occurred while retrieving tutorials."
+                message: err.message || "Some error occurred while retrieving quiz."
             });
         });
     // if a user id parameter is provided in the request; push all custom quizes associated with that user and return the data

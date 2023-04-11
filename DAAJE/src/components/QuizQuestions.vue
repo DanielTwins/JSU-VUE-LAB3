@@ -12,11 +12,10 @@ import { ref } from "vue";
 export default {
   components: { QuizCard },
   async setup() {
-                                                                // provide user id as last parameter to retrieve custom quizes
-    const result = await axios.get("http://localhost:8080/quiz_questions/642d7db25ca37827d36cb3e9");
+    const userid = localStorage.getItem("usertoken");
+    const result = await axios.get((userid? `http://localhost:8080/quiz_questions/${userid}` : "http://localhost:8080/quiz_questions"));
     const quizes = ref(result.data);
-
-    return { quizes };
+      return { quizes };
   },
 };
 </script>
