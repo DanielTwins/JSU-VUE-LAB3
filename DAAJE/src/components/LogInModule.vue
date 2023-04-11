@@ -167,11 +167,11 @@ export default {
 
 <style>
 .login-wrapper {
-  --black: #000000;
+  /* --black: #000000;
   --white: #ffffff;
   --purple: #5f0a87;
   --light-purple: #D3C8E4;
-  --error: #A81621;
+  --error: #A81621; */
   display: grid;
   grid-template-columns: 5px auto 5px;
   position: fixed;
@@ -186,8 +186,7 @@ export default {
     min-width: 200px;
   padding: 1rem;
   max-width: 800px;
-  /* background-color: var(--light-purple); */
-  background-color: rgba(211, 200, 228, 0.6);
+  background-color: var(--frosty-purple-bg);
   backdrop-filter: blur(20px);
   border-radius: 10px;
 
