@@ -53,7 +53,8 @@ async function findUserQuiz(id) {
 // Create a new quiz and embed
 exports.createQuiz = async(req, res) => {
     const id = req.params.id;
-    const _user = await User.findById(id)
+    const quizModel = await new Quiz(req.body);
+/*     const _user = await User.findById(id)
         .then(data => {
             if (!data) { 
                 res.status(404).send({ message: `User with id: ${id} could not be found`}); 
@@ -61,10 +62,22 @@ exports.createQuiz = async(req, res) => {
             .catch(err => {
                 res.status(500).send({ message: `Error retrieving user with id: ${id}` });
             }
-        );    
+        );  */   
     // create and use a custom quiz schema model to assign _id fields to all new quizes
-    _user.created.quiz.push(req.body); //vanilla js "push" is used on the provided db object. Consider using mongodb operators directly.
-    res.status(200).send(await _user.save());
+    //_user.created.quiz.push(req.body); //vanilla js "push" is used on the provided db object. Consider using mongodb operators directly.
+    const _user = await User.findOneAndUpdate(
+        { _id: id }, 
+        { $push: {"created.quiz": quizModel} },
+        { new: true, select: "created" },
+    );
+    console.log(_user);
+/*     (err, _data) => { 
+        if(err) {
+            return res.status(500).send(err)
+        } else {
+            return res.status(200).send(_data); 
+        }
+    } */
 };
 // Create a new user
 exports.createUser = (req, res) => {
