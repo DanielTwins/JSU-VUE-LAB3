@@ -4,7 +4,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-        userLogIn : false,
+      userLogIn: false,
       userError: false,
       passwordError: false,
       emailError: false,
@@ -32,8 +32,8 @@ export default {
         email: this.signEmail,
         password: this.userName,
       });
-      this.userName = ''
-      this.signEmail = ''
+      this.userName = '';
+      this.signEmail = '';
       this.showLogin(false);
     },
     handleLogIn() {
@@ -51,121 +51,146 @@ export default {
 </script>
 
 <template>
-  <div class="login-wrapper">
+  <div class="login-wrapper-top-bottom">
     <div @click="showLogin(false)" class="clickable-area" />
-    <div class="login-container">
-      <div class="direction-btn-container">
-        <button v-show="logIn" @click="showLogin(false)" class="direction-btn">
-          <svg
-            class="cross"
-            id="Layer_1"
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 40 40"
+    <div class="login-wrapper">
+      <div @click="showLogin(false)" class="clickable-area" />
+      <div class="login-container">
+        <div class="direction-btn-container">
+          <button
+            v-show="logIn"
+            @click="showLogin(false)"
+            class="direction-btn"
           >
-            <polyline
-              id="POINT"
-              class="cross-detail"
-              points="39.71 .29 20 20 39.71 39.71"
-            />
-            <polyline
-              id="POINT-2"
-              data-name="POINT"
-              class="cross-detail"
-              points=".33 39.71 20.04 20 .33 .29"
-            />
-          </svg>
-        </button>
-        <button v-show="!logIn" @click="signingIn" class="direction-btn">
-          <svg
-            class="arrow"
-            id="Layer_1"
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 40 40"
-          >
-            <line id="LINE" class="line" x1="40" y1="20" x2="1" y2="20" />
-            <polyline
-              id="POINT"
-              class="point"
-              points="20.33 .29 .62 20 20.33 39.71"
-            />
-          </svg>
-        </button>
-      </div>
+            <svg
+              class="cross"
+              id="Layer_1"
+              data-name="Layer 1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 40 40"
+            >
+              <polyline
+                id="POINT"
+                class="cross-detail"
+                points="39.71 .29 20 20 39.71 39.71"
+              />
+              <polyline
+                id="POINT-2"
+                data-name="POINT"
+                class="cross-detail"
+                points=".33 39.71 20.04 20 .33 .29"
+              />
+            </svg>
+          </button>
+          <button v-show="!logIn" @click="signingIn" class="direction-btn">
+            <svg
+              class="arrow"
+              id="Layer_1"
+              data-name="Layer 1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 40 40"
+            >
+              <line id="LINE" class="line" x1="40" y1="20" x2="1" y2="20" />
+              <polyline
+                id="POINT"
+                class="point"
+                points="20.33 .29 .62 20 20.33 39.71"
+              />
+            </svg>
+          </button>
+        </div>
 
-      <form
-        v-show="logIn"
-        @submit.prevent="handleLogIn"
-        class="login-regular-container"
-      >
-        <div class="input-container">
-          <label for="email" class="input-label">Epost</label>
-          <input class="input-value" v-model="email" type="email" required />
-          <p class="error-text" v-if="emailError">Fel</p>
+        <form
+          v-show="logIn"
+          @submit.prevent="handleLogIn"
+          class="login-regular-container"
+        >
+          <div class="input-container">
+            <label for="email" class="input-label">Epost</label>
+            <input class="input-value" v-model="email" type="email" required />
+            <p class="error-text" v-if="emailError">Fel</p>
+          </div>
+          <div class="input-container">
+            <label for="password" class="input-label">Lösenord</label>
+            <input
+              class="input-value"
+              v-model="password"
+              type="password"
+              required
+            />
+            <p class="error-text" v-if="passwordError">Fel</p>
+          </div>
+          <div class="submit-btn-container">
+            <button type="submit" class="login-btn">Logga in</button>
+            <p>Eller</p>
+            <button @click="signingIn" class="signIn-btn">Skapa konto</button>
+          </div>
+        </form>
+        <div class="forgot-btn-container">
+          <button v-show="logIn" @click="forgotPassword" class="forgot-btn">
+            Glömt lösenord?
+          </button>
         </div>
-        <div class="input-container">
-          <label for="password" class="input-label">Lösenord</label>
-          <input
-            class="input-value"
-            v-model="password"
-            type="password"
-            required
-          />
-          <p class="error-text" v-if="passwordError">Fel</p>
-        </div>
-        <div class="submit-btn-container">
-          <button type="submit" class="login-btn">Logga in</button>
-          <p>Eller</p>
-          <button @click="signingIn" class="signIn-btn">Skapa konto</button>
-        </div>
-      </form>
-      <div class="forgot-btn-container">
-        <button v-show="logIn" @click="forgotPassword" class="forgot-btn">
-          Glömt lösenord?
-        </button>
-      </div>
 
-      <form
-        v-show="!logIn"
-        @submit.prevent="handleSignIn"
-        class="login-new-container"
-      >
-        <div class="input-container">
-          <label for="userName" class="input-label">Användarnamn</label>
-          <input class="input-value" v-model="userName" type="text" required />
-          <p class="error-text" v-if="userError">Fel</p>
-        </div>
-        <div class="input-container">
-          <label for="password" class="input-label">Lösenord</label>
-          <input
-            class="input-value"
-            v-model="signPassword"
-            type="password"
-            required
-          />
-          <p class="error-text" v-if="passwordError">Fel</p>
-        </div>
-        <div class="input-container">
-          <label for="email" class="input-label">Epost</label>
-          <input
-            class="input-value"
-            v-model="signEmail"
-            type="email"
-            required
-          />
-          <p class="error-text" v-if="emailError">Fel</p>
-        </div>
-        <div class="submit-btn-container">
-          <button type="submit" class="login-btn">Skapa ditt nya konto</button>
-        </div>
-      </form>
+        <form
+          v-show="!logIn"
+          @submit.prevent="handleSignIn"
+          class="login-new-container"
+        >
+          <div class="input-container">
+            <label for="userName" class="input-label">Användarnamn</label>
+            <input
+              class="input-value"
+              v-model="userName"
+              type="text"
+              required
+            />
+            <p class="error-text" v-if="userError">Fel</p>
+          </div>
+          <div class="input-container">
+            <label for="password" class="input-label">Lösenord</label>
+            <input
+              class="input-value"
+              v-model="signPassword"
+              type="password"
+              required
+            />
+            <p class="error-text" v-if="passwordError">Fel</p>
+          </div>
+          <div class="input-container">
+            <label for="email" class="input-label">Epost</label>
+            <input
+              class="input-value"
+              v-model="signEmail"
+              type="email"
+              required
+            />
+            <p class="error-text" v-if="emailError">Fel</p>
+          </div>
+          <div class="submit-btn-container">
+            <button type="submit" class="login-btn">
+              Skapa ditt nya konto
+            </button>
+          </div>
+        </form>
+      </div>
+      <div @click="showLogin(false)" class="clickable-area" />
     </div>
     <div @click="showLogin(false)" class="clickable-area" />
   </div>
 </template>
 
 <style>
+.login-wrapper-top-bottom{
+    display: grid;
+  grid-template-rows: 50px auto 50px;
+  position: fixed;
+  z-index: 9999;
+  top: 0.2rem;
+  left: 0.3rem;
+  right: 0.3rem;
+  bottom: 0.3rem;
+}
 .login-wrapper {
   /* --black: #000000;
   --white: #ffffff;
@@ -174,16 +199,20 @@ export default {
   --error: #A81621; */
   display: grid;
   grid-template-columns: 5px auto 5px;
-  position: fixed;
-  z-index: 999;
+  /* position: fixed;
+  z-index: 9999;
   top: 0.2rem;
   left: 0.3rem;
   right: 0.3rem;
-  bottom: 0.3rem;
+  bottom: 0.3rem; */
+}
+
+.clickable-area{
+    width: 100%;
 }
 
 .login-container {
-    min-width: 200px;
+  min-width: 200px;
   padding: 1rem;
   max-width: 800px;
   background-color: var(--frosty-purple-bg);
@@ -191,7 +220,7 @@ export default {
   border-radius: 10px;
 
   /* olika färger till bakgrundet */
-    /* background-color: rgba(244, 244, 244, 0.65); */
+  /* background-color: rgba(244, 244, 244, 0.65); */
   /* background-color: rgba(95, 10, 135, 0.5); */
   /* overflow: scroll; */
 }
@@ -205,8 +234,14 @@ export default {
     bottom: 0.3rem;
   }
 
-  .login-container{
+  .login-container {
     min-width: 390px;
+  }
+}
+
+@media (min-width: 1400px ) {
+    .login-container {
+   min-width: 100%;
   }
 }
 button {
@@ -255,13 +290,12 @@ button {
 
 .login-regular-container,
 .login-new-container {
-    width: 100%;
-    margin-top: 15vh;
+  width: 100%;
+  margin-top: 15vh;
 }
 
-
 .input-container {
-    width: 100%;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-rows: 25px 45px 35px;
@@ -270,7 +304,7 @@ button {
 
 .input-label {
   font-weight: 500;
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: var(--purple);
 }
 
@@ -286,7 +320,7 @@ button {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .submit-btn-container p {
@@ -295,11 +329,11 @@ button {
   text-align: center;
   font-weight: 600;
   color: var(--purple);
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
-.error-text{
-    color: var(--error, red);
+.error-text {
+  color: var(--error, red);
 }
 
 .login-btn,
@@ -310,7 +344,7 @@ button {
   padding: 0.8rem;
   font-weight: 500;
   border-radius: 10px;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .login-btn {
@@ -337,8 +371,8 @@ button {
 }
 
 .forgot-btn {
-    color: var(--purple);
-    font-size: .7rem;
+  color: var(--purple);
+  font-size: 0.7rem;
   font-weight: 500;
   text-decoration: underline;
   padding-bottom: 3vh;

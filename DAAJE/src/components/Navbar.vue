@@ -48,6 +48,7 @@ export default {
  -->
 <template>
   <nav class="navbar">
+    <UserAvatar :img="imgPath" :userGreeting="userGreeting" :userDesc="userDesc" />
     <div class="navbar-brand">
       <span class="navbar-toggle" @click="toggleMenu">
         <span></span>
@@ -76,7 +77,11 @@ export default {
 </template>
 
 <script>
+import UserAvatar from './UserAvatar.vue';
 export default {
+    components:{
+        UserAvatar
+    },
   name: 'Navbar',
   data() {
     return {
@@ -98,6 +103,7 @@ export default {
 
 <style>
 .navbar {
+    box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,11 +112,13 @@ export default {
   top: 1rem;
   right: 0;
   left: 0;
-  width: 100% !important;
+  border-radius: 40px;
   background-color: var(--frosty-bg);
 }
 
+
 .navbar-brand {
+    padding: 0 1rem 0 0;
   display: flex;
   align-items: center;
   margin-left: auto;

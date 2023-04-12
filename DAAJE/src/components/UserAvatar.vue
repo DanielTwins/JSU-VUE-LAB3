@@ -45,6 +45,7 @@ export default {
 
 <style>
 .avatar-wrapper {
+    padding: 0 .5rem;
   display: flex;
   flex-direction: row;
   gap: 0.65rem;
@@ -77,8 +78,9 @@ export default {
 }
 
 .login-user-btn{
-    color: #FFFFFF;
-    padding-top: 2rem;
+    padding-top: .5rem;
+    font-weight: bold;
+    color: var(--white);
     background: transparent;
     border: none;
     cursor: pointer;

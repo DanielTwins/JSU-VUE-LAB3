@@ -7,7 +7,7 @@ import TheQuestion from "../components/TheQuestion.vue";
 import TheResults from "../components/TheResults.vue";
 import axios from "axios";
 import ProgressBar from "../components/ProgressBar.vue";
-import UserAvatar from "../components/UserAvatar.vue";
+// import UserAvatar from "../components/UserAvatar.vue";
 import TimerComponent from "../components/TimerComponent.vue";
 
 const currentQuestionIndex = ref(0);

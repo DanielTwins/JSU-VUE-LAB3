@@ -1,11 +1,11 @@
 <script setup>
-import UserAvatar from "../components/UserAvatar.vue";
+// import UserAvatar from "../components/UserAvatar.vue";
 import QuizQuestions from "../components/QuizQuestions.vue";
 
-const props = defineProps({
-  userName: String,
-  userRole: String
-})
+// const props = defineProps({
+//   userName: String,
+//   userRole: String
+// })
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const props = defineProps({
   <Suspense>
     <div class="wrapper">
       <section class="pt-medium">
-        <UserAvatar :userName="userName" :userRole="userRole" />
+        <!-- <UserAvatar :userName="userName" :userRole="userRole" /> -->
         <div class="hero-text">
           <h1>Welcome to your favorite Quiz App</h1>
           <h4>Select a category to start the quiz!</h4>
