@@ -4,7 +4,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-        userLogIn : false,
+      userLogIn : false,
       userError: false,
       passwordError: false,
       emailError: false,
