@@ -162,7 +162,7 @@ export default {
   padding: 0;
   display: none;
   flex-direction: column;
-  position: absolute;
+  position: relative;
   top: 3rem;
   right: 0;
   width: 100%;
@@ -214,16 +214,26 @@ export default {
     flex-direction: row;
     justify-content: flex-end;
     justify-content: space-between;
-      /* display: grid;
+    /* display: grid;
       grid-template-columns: repeat(4,80px); */
   }
 
+  .navbar{
+    padding: 0 !important;
+  }
+
   .navbar-menu {
-  list-style: none;
-  top: 1rem;
-  left: 0;
-  width: 100%;
-  min-height: none;
-}
+    list-style: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 1rem;
+    padding: 2rem;
+  }
+  .navbar-menu li {
+    /* margin: 0 10px; */
+    padding: 0;
+    border-bottom: 0;
+  }
 }
 </style>
