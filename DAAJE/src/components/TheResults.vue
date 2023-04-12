@@ -106,7 +106,7 @@ export default {
               {{ result.option.text }}
             </p>
             <div class="pb-3 whyCorrect" v-if="!result.option.isCorrect">
-              <p>Anledning till rätt svar,</p>
+              <p>Anledning till rätt svar:</p>
               <p>
                 {{
                   result.question.options.filter(
@@ -146,14 +146,14 @@ h3 {
 }
 
 .question {
-  border: 3px #5f0a87 dotted;
+  border: 3px gray dotted;
   border-radius: 10px;
   padding: 0.5rem;
 }
 
 .whyCorrect {
   color: white;
-  background-color: #5f0a87;
+  background-color: #5f0a87d0;
   border-radius: 10px;
   padding: 0.5rem;
 }
