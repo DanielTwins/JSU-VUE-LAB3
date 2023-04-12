@@ -23,8 +23,9 @@ const resultStore = useResultStore();
 // empty resultStore for new quiz
 resultStore.$reset()
 
-
-const result = await axios.get("http://localhost:8080/quiz_questions");
+const userid = localStorage.getItem("usertoken");
+const result = await axios.get(`http://localhost:8080/quiz_questions/${userid}`);
+console.log(result);
 const quizes = ref(result.data);
 
 const quizToShow = quizes.value.find((quiz) => quiz.id === paramsId);

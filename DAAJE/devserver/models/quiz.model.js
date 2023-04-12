@@ -3,7 +3,10 @@ const mockQuiz = mongoose => {
       "mock_quiz",
       mongoose.Schema(
         {
-          id: String,
+          id: {
+            type: String,
+            default: "custom"
+          },
           img: String,
           name: String,
           questions: Array,
