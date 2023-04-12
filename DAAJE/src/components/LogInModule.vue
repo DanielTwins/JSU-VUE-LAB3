@@ -14,6 +14,7 @@ export default {
       userName: '',
       signEmail: '',
       signPassword: '',
+      loggedInStatus: false
     };
   },
   methods: {
@@ -23,24 +24,35 @@ export default {
     showLogin(boolean) {
       this.$emit('booleanToParent', boolean);
     },
-    handleSignIn() {
-      console.log(
+    async handleSignIn(){
+          console.log(
         `Användarnamn ${this.userName}Epost ${this.signEmail}, lösenord ${this.signPassword}`
       );
-      axios.post('http://localhost:8080/post/new_user', {
-        username: this.userName,
-        email: this.signEmail,
-        password: this.userName,
-      });
-      this.userName = '';
-      this.signEmail = '';
+        await axios.post("http://localhost:8080/post/new_user", {
+            username: this.userName,
+            email: this.signEmail,
+            password: this.userName
+          });
+        this.showLogin(false)
+        this.userName = ''
+        this.signEmail = ''
+
+    },
+    async handleLogIn() {
+      const usertoken = await axios.post("http://localhost:8080/post/login", 
+          {
+            email: this.email,
+            password: this.password
+          }
+      );
+      if(usertoken) { 
+        localStorage.setItem('usertoken', usertoken.data); // store this in pinia instead? @johan
+        this.$loggedInStatus = true; // this bool is for tracking logged in status
+        // call methods here to update GUI with user details @chris
+      } 
       this.showLogin(false);
     },
-    handleLogIn() {
-      console.log(`Epost ${this.email}, lösenord ${password}`);
-      this.showLogin(false);
-    },
-    signingIn() {
+    signingIn() { /* byt vy mellan signin/login */
       this.logIn = !this.logIn;
     },
     forgotPassword() {
