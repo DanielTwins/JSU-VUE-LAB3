@@ -37,6 +37,7 @@ export default {
         this.showLogin(false);
         this.userName = '';
         this.signEmail = '';
+        this.emailError = false;
       } catch (error) {
         this.emailError = error.response.data.message;
       }
@@ -55,6 +56,7 @@ export default {
           this.$loggedInStatus = true; // this bool is for tracking logged in status
           // call methods here to update GUI with user details @chris
         }
+        this.passwordError = false;
         this.showLogin(false);
       } catch (error) {
         this.passwordError = error.response.data;
