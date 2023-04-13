@@ -14,7 +14,7 @@ export default {
       userName: '',
       signEmail: '',
       signPassword: '',
-      loggedInStatus: false
+      loggedInStatus: false,
     };
   },
   methods: {
@@ -24,32 +24,36 @@ export default {
     showLogin(boolean) {
       this.$emit('booleanToParent', boolean);
     },
-    async handleSignIn(){
-          console.log(
-        `Användarnamn ${this.userName}Epost ${this.signEmail}, lösenord ${this.signPassword}`
-      );
+    async handleRegisterNewUser() {
+      try {
+        console.log(
+          `Användarnamn ${this.userName}Epost ${this.signEmail}, lösenord ${this.signPassword}`,
+        );
         await axios.post("http://localhost:8080/post/new_user", {
-            username: this.userName,
-            email: this.signEmail,
-            password: this.userName
-          });
-        this.showLogin(false)
-        this.userName = ''
-        this.signEmail = ''
-
+          username: this.userName,
+          email: this.signEmail,
+          password: this.userName,
+        });
+        this.showLogin(false);
+        this.userName = '';
+        this.signEmail = '';
+      } catch (error) {
+        this.emailError = error.response.data.message;
+      }
     },
     async handleLogIn() {
-      const usertoken = await axios.post("http://localhost:8080/post/login", 
-          {
-            email: this.email,
-            password: this.password
-          }
+      const usertoken = await axios.post(
+        "http://localhost:8080/post/login",
+        {
+          email: this.email,
+          password: this.password,
+        },
       );
-      if(usertoken) { 
+      if (usertoken) {
         localStorage.setItem('usertoken', usertoken.data); // store this in pinia instead? @johan
         this.$loggedInStatus = true; // this bool is for tracking logged in status
         // call methods here to update GUI with user details @chris
-      } 
+      }
       this.showLogin(false);
     },
     signingIn() { /* byt vy mellan signin/login */
@@ -120,7 +124,7 @@ export default {
           <div class="input-container">
             <label for="email" class="input-label">Epost</label>
             <input class="input-value" v-model="email" type="email" required />
-            <p class="error-text" v-if="emailError">Fel</p>
+            <p class="error-text" v-if="emailError">Fel, {{ emailError }}</p>
           </div>
           <div class="input-container">
             <label for="password" class="input-label">Lösenord</label>
@@ -146,7 +150,7 @@ export default {
 
         <form
           v-show="!logIn"
-          @submit.prevent="handleSignIn"
+          @submit.prevent="handleRegisterNewUser"
           class="login-new-container"
         >
           <div class="input-container">
@@ -177,7 +181,7 @@ export default {
               type="email"
               required
             />
-            <p class="error-text" v-if="emailError">Fel</p>
+            <p class="error-text" v-if="emailError">Fel, {{ emailError }}</p>
           </div>
           <div class="submit-btn-container">
             <button type="submit" class="login-btn">
