@@ -1,10 +1,10 @@
 <script setup>
-import Navbar from "./components/Navbar.vue";
+import TheNavbar from "./components/TheNavbar.vue";
 import Footer from "./components/Footer.vue";
 </script>
 <template>
   <div class="container">
-    <Navbar />
+    <TheNavbar />
     <Suspense>
       <RouterView v-slot="{Component}">
         <Transition name="fade" mode="out-in">
@@ -19,7 +19,7 @@ import Footer from "./components/Footer.vue";
 export default {
   name: "App",
   components: {
-    Navbar,
+    TheNavbar,
   },
 };
 </script>
