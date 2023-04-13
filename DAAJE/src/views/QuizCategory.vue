@@ -1,5 +1,5 @@
 <script setup>
-import QuizForm from "../components/QuizForm.vue";
+import QuizCategoryComp from "../components/QuizCategoryComp.vue";
 // import UserAvatar from "../components/UserAvatar.vue";
 </script>
 
@@ -7,10 +7,10 @@ import QuizForm from "../components/QuizForm.vue";
   <div class="pt-medium">
     <!-- <UserAvatar /> -->
     <div class="hero-text">
-      <h1>Skapa ditt egna quiz!</h1>
-      <h4>Skriv frågor och lägg till svarsalternativ</h4>
+      <h1>Skapa ditt egna quiz utifrån kategorier!</h1>
+      <h4>Välj kategorier och tryck skapa quiz för att få specifikt quiz.</h4>
     </div>
-    <QuizForm />
+    <QuizCategoryComp />
   </div>
 </template>
 

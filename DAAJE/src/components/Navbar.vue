@@ -48,55 +48,77 @@ export default {
  -->
 <template>
   <nav class="navbar">
+    <UserAvatar :img="imgPath" :userGreeting="userGreeting" :userDesc="userDesc" />
     <div class="navbar-brand">
-      <span class="navbar-toggle" @click="isDropdownOpen = !isDropdownOpen">
+      <span class="navbar-toggle" @click="toggleMenu">
         <span></span>
         <span></span>
         <span></span>
       </span>
     </div>
-    <ul class="navbar-menu" :class="{ 'navbar-menu--open': isDropdownOpen }">
+    <ul class="navbar-menu" :class="menu">
       <li>
-        <router-link to="/" @click="isDropdownOpen = false">Home</router-link>
+        <router-link to="/" @click="toggleMenu">Home</router-link>
       </li>
 
       <li>
-        <router-link to="/quiz" @click="isDropdownOpen = false">Quiz</router-link>
+        <router-link to="/quiz" @click="toggleMenu">Quiz</router-link>
       </li>
 
       <li>
-        <router-link to="/results" @click="isDropdownOpen = false">Results</router-link>
+        <router-link to="/results" @click="toggleMenu">Results</router-link>
       </li>
 
       <li>
-        <router-link to="/about" @click="isDropdownOpen = false">About</router-link>
+        <router-link to="/about" @click="toggleMenu">About</router-link>
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
+import UserAvatar from './UserAvatar.vue';
 export default {
-  name: "Navbar",
+    components:{
+        UserAvatar
+    },
+  name: 'Navbar',
   data() {
     return {
       isDropdownOpen: false,
+      menu: 'desktop-mode',
     };
+  },
+  methods: {
+    toggleMenu() {
+      if (this.menu === 'navbar-menu--open') {
+        this.menu = 'desktop-mode';
+      } else {
+        this.menu = 'navbar-menu--open';
+      }
+    },
   },
 };
 </script>
 
 <style>
 .navbar {
+    box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #5c025c;
   position: absolute;
-  top: 4.8rem;
+  top: 1rem;
+  right: 0;
+  left: 0;
+  border-radius: 40px;
+  background-color: var(--frosty-bg);
 }
 
+
 .navbar-brand {
+    padding: 0 1rem 0 0;
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -148,34 +170,78 @@ export default {
   padding: 0;
   display: none;
   flex-direction: column;
-  position: absolute;
-  top: 45px;
+  position: relative;
+  top: 3rem;
   right: 0;
   width: 100%;
   background-color: hsl(300, 24%, 17%);
   z-index: 1;
+  min-height: 50vh;
 }
 
 .navbar-menu--open {
   display: flex;
+  justify-content: space-around;
 }
 
 .navbar-menu li {
-  margin: 0 10px;
-  padding: 10px 0;
-
+  /* margin: 0 10px; */
+  padding: 1rem 0;
   border-bottom: solid 1px #fff;
 }
 
 .navbar-menu li:last-child {
-  border-bottom: 0;
+  border-bottom: none;
 }
 
 .navbar-menu li a {
+  text-align: center;
   text-decoration: none;
   color: #fff;
-  font-size: 16px;
+  font-size: 1.2rem;
   display: flex;
+  justify-content: center;
   /* justify-content: flex-end; /* li to the left  */
+}
+
+.desktop-mode {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .navbar-brand {
+    display: none;
+  }
+
+  .navbar-menu--open,
+  .desktop-mode {
+    margin-left: auto;
+    max-width: 500px;
+    background: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    justify-content: space-between;
+    /* display: grid;
+      grid-template-columns: repeat(4,80px); */
+  }
+
+  .navbar{
+    padding: 0 !important;
+  }
+
+  .navbar-menu {
+    list-style: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 1rem;
+    padding: 2rem;
+  }
+  .navbar-menu li {
+    /* margin: 0 10px; */
+    padding: 0;
+    border-bottom: 0;
+  }
 }
 </style>

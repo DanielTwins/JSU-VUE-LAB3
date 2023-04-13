@@ -6,17 +6,10 @@ import AppButton from './AppButton.vue';
 <template>
     <h1>Meet Our Developers</h1>
     <div class="container">
-
         <div class="row contact-us">
             <div class="col contact-block">
-                <h3>Johan Hellberg</h3>
-                <a href="https://www.linkedin.com/in/johan-hellberg-805078167/" target="_blank">
-                    <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
-                </a>
-            </div>
-            <div class="col contact-block">
-                <h3>Elis Nilsén</h3>
-                <a href="https://www.linkedin.com/in/elis-nilz%C3%A9n-78526b19b/" target="_blank">
+                <h3>Christopher Rönnberg</h3>
+                <a href="https://www.linkedin.com/in/christopher-rönnberg/" target="_blank">
                     <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
                 </a>
             </div>
@@ -29,6 +22,18 @@ import AppButton from './AppButton.vue';
             <div class="col contact-block">
                 <h3>Daniel Naseri</h3>
                 <a href="https://www.linkedin.com/in/daniel-naseri-899933197/" target="_blank">
+                    <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
+                </a>
+            </div>
+            <div class="col contact-block">
+                <h3>Elis Nilsén</h3>
+                <a href="https://www.linkedin.com/in/elis-nilz%C3%A9n-78526b19b/" target="_blank">
+                    <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
+                </a>
+            </div>
+            <div class="col contact-block">
+                <h3>Johan Hellberg</h3>
+                <a href="https://www.linkedin.com/in/johan-hellberg-805078167/" target="_blank">
                     <AppButton width="" color="primary" size="small" padding="p-small">LinkedIn</AppButton>
                 </a>
             </div>

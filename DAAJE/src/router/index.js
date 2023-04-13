@@ -1,6 +1,7 @@
 import HomePage from '../views/HomePage.vue';
 import AboutPage from '../views/AboutPage.vue';
 import QuizPage from '../views/QuizPage.vue';
+import QuizCategory from '../views/QuizCategory.vue';
 import QuizView from '../views/QuizView.vue';
 import NotFound from '../views/NotFound.vue';
 import ResultsPage from '../views/ResultsPage.vue';
@@ -28,10 +29,16 @@ const routes = [
     component: QuizPage,
   },
   {
+    path: '/quiz-category',
+    name: 'QuizCategory',
+    component: QuizCategory,
+    props: true,
+  },
+  {
     path: '/quiz/:id',
     name: 'QuizView',
     props: (route) => ({ ...route.params, id: route.params.id }),
-    beforeEnter(to, from) {
+/*     beforeEnter(to, from) {
       const exists = quizes.value.find((quiz) => quiz.id === to.params.id);
       if (!exists) return {
           name: 'NotFound',
@@ -40,7 +47,7 @@ const routes = [
           query: to.query,
           hash: to.hash,
         };
-    },
+    }, */
     component: QuizView,
   },
   {

@@ -1,13 +1,12 @@
 <script setup>
 import { useRoute } from "vue-router";
-import { useResultStore } from "../stores/ResultStore"
 import { ref, computed } from "vue";
+import axios from "axios";
+import { useResultStore } from "../stores/ResultStore";
 import Confetti from "../components/Confetti.vue";
 import TheQuestion from "../components/TheQuestion.vue";
 import TheResults from "../components/TheResults.vue";
-import axios from "axios";
 import ProgressBar from "../components/ProgressBar.vue";
-import UserAvatar from "../components/UserAvatar.vue";
 import TimerComponent from "../components/TimerComponent.vue";
 
 const currentQuestionIndex = ref(0);
@@ -21,18 +20,19 @@ const paramsId = route.params.id;
 const resultStore = useResultStore();
 
 // empty resultStore for new quiz
-resultStore.$reset()
+resultStore.$reset();
 
-
-const result = await axios.get("http://localhost:8080/quiz_questions");
+const userid = localStorage.getItem("usertoken");
+const result = await axios.get(`http://localhost:8080/quiz_questions/${userid}`);
+console.log(result);
 const quizes = ref(result.data);
 
 const quizToShow = quizes.value.find((quiz) => quiz.id === paramsId);
 const quizStatus = computed(
-  () => `${currentQuestionIndex.value}/${quizToShow.questions.length}`
+  () => `${currentQuestionIndex.value}/${quizToShow.questions.length}`,
 );
 const completionPercentage = computed(
-  () => `${(currentQuestionIndex.value / quizToShow.questions.length) * 100}%`
+  () => `${(currentQuestionIndex.value / quizToShow.questions.length) * 100}%`,
 );
 
 const onChoiceSelected = async (isCorrect) => {
@@ -51,12 +51,12 @@ const onChoiceSelected = async (isCorrect) => {
     const resultData = await resultStore.results;
 
     axios.post('http://localhost:8080/post/result?id=01', {
-      resultData
+      resultData,
     })
-      .then(response => {
-        resultStore.addResultSum({ response })
+      .then((response) => {
+        resultStore.addResultSum({ response });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -67,7 +67,6 @@ const onChoiceSelected = async (isCorrect) => {
 
 <template>
   <div class="wrapper">
-    <UserAvatar :userName="userName" :userRole="userRole" />
     <div class="hero-section">
       <h1>Vue.js Quiz</h1>
       <TimerComponent />
@@ -89,7 +88,6 @@ const onChoiceSelected = async (isCorrect) => {
 <script>
 export default {
   components: {
-    UserAvatar,
     ProgressBar,
     TimerComponent,
   },

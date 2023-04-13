@@ -7,6 +7,7 @@
       {
         "id": 1,
         "text": "Vad är Vue.js?",
+        "category": "General Vue",
         "options": [
           {
             "id": 1,
@@ -38,6 +39,7 @@
       {
         "id": 2,
         "text": "Vad är den virtuella DOM i Vue.js?",
+        "category": "General Vue",
         "options": [
           {
             "id": 1,
@@ -69,6 +71,7 @@
       {
         "id": 3,
         "text": "Vilket är den grundläggande syntaxen för att skapa en Vue-komponent?",
+        "category": "General Vue",
         "options": [
           {
             "id": 1,
@@ -100,6 +103,7 @@
       {
         "id": 4,
         "text": "Vad är skillnaden mellan Vue.js och React.js?",
+        "category": "General Vue",
         "options": [
           {
             "id": 1,
@@ -131,6 +135,7 @@
       {
         "id": 5,
         "text": "Vilken av följande metoder används för att ladda data från en server i en Vue-komponent? ",
+        "category": "Built-in Directives",
         "options": [
           {
             "id": 1,
@@ -162,6 +167,7 @@
       {
         "id": 6,
         "text": "Vilket alternativ beskriver en computed property i Vue? ",
+        "category": "Computed Properties",
         "options": [
           {
             "id": 1,
@@ -193,6 +199,7 @@
       {
         "id": 7,
         "text": "Vad är skillnaden mellan v-bind och v-model i Vue.js?",
+        "category": "Built-in Directives",
         "options": [
           {
             "id": 1,
@@ -224,6 +231,7 @@
       {
         "id": 8,
         "text": "Vad är en Vue.js-komponent?",
+        "category": "Components",
         "options": [
           {
             "id": 1,
@@ -255,6 +263,7 @@
       {
         "id": 9,
         "text": "Vad är en computed egenskap för en Vue.js-komponent?",
+        "category": "Computed Properties",
         "options": [
           {
             "id": 1,
@@ -286,6 +295,7 @@
       {
         "id": 10,
         "text": "Vad är syftet med v-for?",
+        "category": "Built-in Directives",
         "options": [
           {
             "id": 1,
@@ -317,6 +327,7 @@
       {
         "id": 11,
         "text": "Vilken av följande är en av de grundläggande byggstenarna i Vue.js?",
+        "category": "General Vue",
         "options": [
           {
             "id": 1,
@@ -348,6 +359,7 @@
       {
         "id": 12,
         "text": "Vad kallas en funktion som används för att modifiera data i en Vue-komponent?",
+        "category": "Computed Properties",
         "options": [
           {
             "id": 1,
@@ -379,6 +391,7 @@
       {
         "id": 13,
         "text": "Vad kallas Vue.js-funktionen som används för att binda data till en DOM-attribut?",
+        "category": "v-model",
         "options": [
           {
             "id": 1,
@@ -410,6 +423,7 @@
       {
         "id": 14,
         "text": "Vad är Vuex i samband med Vue.js?",
+        "category": "State Management",
         "options": [
           {
             "id": 1,
@@ -441,6 +455,7 @@
       {
         "id": 15,
         "text": "Vad kallas funktionen i Vue.js som används för att hantera händelser i en komponent?",
+        "category": "Built-in Directives",
         "options": [
           {
             "id": 1,
@@ -472,6 +487,7 @@
       {
         "id": 16,
         "text": "Vilken av följande är ett sätt att skapa en dynamisk lista med data i Vue.js?",
+        "category": "Built-in Directives",
         "options": [
           {
             "id": 1,
@@ -503,6 +519,7 @@
       {
         "id": 17,
         "text": "Vilken av följande är en av fördelarna med att använda Vue.js-komponenter?",
+        "category": "Components",
         "options": [
           {
             "id": 1,
@@ -534,6 +551,7 @@
       {
         "id": 18,
         "text": "Vad kallas den Vue.js-funktion som används för att hämta data från en API?",
+        "category": "Data fetching",
         "options": [
           {
             "id": 1,
@@ -565,6 +583,7 @@
       {
         "id": 19,
         "text": "Vilken av följande är en av fördelarna med att använda Vue.js framför andra JavaScript-ramverk?",
+        "category": "General Vue",
         "options": [
           {
             "id": 1,
@@ -596,6 +615,7 @@
       {
         "id": 20,
         "text": "Vad kallas den Vue.js-funktion som används för att skapa en observerbar variabel?",
+        "category": "Built-in Directives",
         "options": [
           {
             "id": 1,

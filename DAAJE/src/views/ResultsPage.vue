@@ -1,7 +1,6 @@
 <script>
-import { useResultStore } from "../stores/resultStore"
-import UserAvatar from "../components/UserAvatar.vue"
-import Chart from 'chart.js/auto'
+import Chart from 'chart.js/auto';
+import { useResultStore } from "../stores/resultStore";
 
 const ShadowPlugin = {
   beforeDraw: (chart) => {
@@ -10,110 +9,110 @@ const ShadowPlugin = {
     ctx.shadowBlur = 10;
     ctx.shadowOffsetX = -10;
     ctx.shadowOffsetY = -5;
-  }
+  },
 };
 
 export default {
-	components: {
-		UserAvatar
-	},
-	data() {
-		return {
-			userName: "Richard",
-			userRole: "JavaScript Educator",
-		}
-	},
-	setup() {
-		const resultStore = useResultStore();
-		const fetchedResults = resultStore.fetchedResults;
-		// guard clause for empty result array
-		if (fetchedResults.length > 0) {
-			const fetchedResultsShortened = [...fetchedResults[0].response.data.slice(1)];
+  components: {
+  },
+  data() {
+    return {
+      userName: "Richard",
+      userRole: "JavaScript Educator",
+    };
+  },
+  setup() {
+    const resultStore = useResultStore();
+    const { fetchedResults } = resultStore;
+    // guard clause for empty result array
+    if (fetchedResults.length > 0) {
+      const fetchedResultsShortened = [...fetchedResults[0].response.data.slice(1)];
 
-			let resultSumArray = [];
-			let totalCorrectAnswers = 0;
-			let totalAmountQuestions = 0;
-			let index = 0;
+      const resultSumArray = [];
+      let totalCorrectAnswers = 0;
+      let totalAmountQuestions = 0;
+      let index = 0;
 
-			// Sort fetched result data
-			// looping through the entire list of answers in all quiz results
-			fetchedResultsShortened.forEach(elem => {
+      // Sort fetched result data
+      // looping through the entire list of answers in all quiz results
+      fetchedResultsShortened.forEach((elem) => {
+        while (index < fetchedResultsShortened[0].resultData.length) {
+          const resultSummary = 0;
+          const questionId = elem.resultData[index].question.id;
+          const question = elem.resultData[index].question.text;
 
-				while (index < fetchedResultsShortened[0].resultData.length) {
-					let resultSummary = 0;
-					let questionId = elem.resultData[index].question.id
-					let question = elem.resultData[index].question.text
+          resultSumArray.push({
+            questionId, question, resultSummary, totalAmountQuestions,
+          });
 
-					resultSumArray.push({ questionId, question, resultSummary, totalAmountQuestions })
+          index++;
+        }
+      });
 
-					index++;
-				}
-			})
+      // for loop to count each correct answer in each quiz result
+      // and add total right for each individual question.
+      for (let i = 0; i < fetchedResultsShortened.length; i++) {
+        for (let j = 0; j < fetchedResultsShortened[i].resultData.length; j++) {
+          const studentAnswer = fetchedResultsShortened[i].resultData[j].option.isCorrect;
 
-			// for loop to count each correct answer in each quiz result
-			// and add total right for each individual question.
-			for (let i = 0; i < fetchedResultsShortened.length; i++) {
-				for (let j = 0; j < fetchedResultsShortened[i].resultData.length; j++) {
-					const studentAnswer = fetchedResultsShortened[i].resultData[j].option.isCorrect;
+          // adding total count of questions from all quizzes and questions within.
+          totalAmountQuestions++;
 
-					// adding total count of questions from all quizzes and questions within.
-					totalAmountQuestions++;
+          if (studentAnswer) {
+            resultSumArray[j].resultSummary++;
+            totalCorrectAnswers++;
+          }
+        }
+      }
 
-					if (studentAnswer) {
-						resultSumArray[j]['resultSummary']++;
-						totalCorrectAnswers++
-					}
-				}
-			}
-
-			return { fetchedResults, fetchedResultsShortened, resultSumArray, totalCorrectAnswers, totalAmountQuestions }
-
-		} else { // do this if no results are in the store
-			console.log("Error: No results in store");
-			window.location.href = "/";
-			alert("Sorry, no results are in yet!");
-		}
-	},
-	mounted() {
-		const ctx = document.getElementById('myChart');
-		const MyChart = new Chart(ctx, {
-			type: "pie",
-			data: {
-				labels: ["Rätt svar", "Fel svar"],
-				datasets: [
-					{
-						label: "Resultat av Quiz",
-						data: [this.totalCorrectAnswers, (this.totalAmountQuestions - this.totalCorrectAnswers)],
-						// backgroundColor: "rgba(54,73,93,.5)",
-						// borderColor: "#36495d",
-						borderWidth: 3,
-					},
-				],
-			},
-			options: {
-				plugins: {
-					legend: {
-						labels: {
-							color: 'white',
-							font: {
-								Size: 18
-							}
-						}
-					}
-				}
-			},
-            plugins: [ShadowPlugin]
-		})
-		MyChart;
-	}
-}
+      return {
+        fetchedResults, fetchedResultsShortened, resultSumArray, totalCorrectAnswers, totalAmountQuestions,
+      };
+    } else { // do this if no results are in the store
+      console.log("Error: No results in store");
+      window.location.href = "/";
+      alert("Sorry, no results are in yet!");
+    }
+  },
+  mounted() {
+    const ctx = document.getElementById('myChart');
+    const MyChart = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: ["Rätt svar", "Fel svar"],
+        datasets: [
+          {
+            label: "Resultat av Quiz",
+            data: [this.totalCorrectAnswers, (this.totalAmountQuestions - this.totalCorrectAnswers)],
+            // backgroundColor: "rgba(54,73,93,.5)",
+            // borderColor: "#36495d",
+            borderWidth: 3,
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              color: 'white',
+              font: {
+                Size: 18,
+              },
+            },
+          },
+        },
+      },
+      plugins: [ShadowPlugin],
+    });
+    MyChart;
+  },
+};
 </script>
 
 <template>
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<UserAvatar :userName="userName" :userRole="userRole" />
 				<h1 class="mb-2 mt-2">Samlade resultat för den här quiz sessionen:</h1>
 
 				<main class="main-content">

@@ -141,22 +141,23 @@ export default {
             this.setTrue()  //must be called here for the last index "isCorrect" to be set.
             // variabel som sammanställer frågorna som skapats i samma format som quizQuestions.json.
             // **Glöm inte att ändra propertyn "name" till en variabel för userns eget input **
-            const postBody = [
-                {
+            const postBody = {
                     id: '',
                     img: '',
                     name: this.quizName,
                     questions: this.questions,
                     category: this.quizCategory
-                }
-            ]
+                };
             if (this.selectedLanguage) {
-                postBody[0].language = this.selectedLanguage
+                postBody.language = this.selectedLanguage
             } /*Om det finns ett valt språk, så lägger denna till det som det första elementet i postBody arrayen. */
+            const userid = localStorage.getItem("usertoken");
+            if (!userid) {
+                return alert("You must be logged in to create a quiz");
+            }
             try {
                 const response = await fetch(
-                    //hotfixed request path 8/3 /E.N
-                    'http://localhost:8080/post/create_quiz',
+                    `http://localhost:8080/post/create_quiz/${userid}`,
                     {
                         method: 'POST',
                         headers: {
