@@ -1,11 +1,11 @@
 <script setup>
 import QuizForm from "../components/QuizForm.vue";
-import UserAvatar from "../components/UserAvatar.vue";
+// import UserAvatar from "../components/UserAvatar.vue";
 </script>
 
 <template>
   <div class="pt-medium">
-    <UserAvatar />
+    <!-- <UserAvatar /> -->
     <div class="hero-text">
       <h1>Skapa ditt egna quiz!</h1>
       <h4>Skriv frågor och lägg till svarsalternativ</h4>
