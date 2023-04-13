@@ -1,37 +1,37 @@
 <script>
 import userImage from "../imgs/Richard.jpg";
-import LoginModule from "../components/LogInModule.vue"
+import LoginModule from "./LogInModule.vue";
+
 export default {
-  components:{
-      LoginModule
+  components: {
+    LoginModule,
   },
   data() {
     return {
-      showLogin : false,
-      userLoggedIn : false,
+      showLogin: false,
+      userLoggedIn: false,
       avatarImg: userImage,
     };
   },
-  methods:{
-    received(boolean) {this.showLogin = boolean}
-    ,
-    toggleShowLogin(){
-        this.showLogin = !this.showLogin
+  methods: {
+    received(boolean) { this.showLogin = boolean; },
+    toggleShowLogin() {
+      this.showLogin = !this.showLogin;
     },
-    logOutUser(){
-        console.log('Loggar ut')
-    }
-  }
+    logOutUser() {
+      console.log('Loggar ut');
+    },
+  },
 };
 </script>
 
 <template>
   <section class="avatar-wrapper">
     <div class="avatar-container">
-      <img class="avatar-image" :src="avatarImg" />
+      <img class="avatar-image" src="../imgs/Richard.jpg" />
     </div>
     <div class="avatar-info">
-      <div class="user-info">Hello, Richard </div>
+      <div class="user-info">Hello, Richard</div>
       <div class="user-info">JavaScript Educator</div>
       <div class="login-user-btn-container">
         <button v-if="!userLoggedIn" @click="toggleShowLogin" class="login-user-btn">Logga in / Skapa konto</button>
@@ -42,10 +42,9 @@ export default {
   <LoginModule @booleanToParent="received" v-show="showLogin"/>
 </template>
 
-
 <style>
 .avatar-wrapper {
-    padding: 0 .5rem;
+  padding: 0 .5rem;
   display: flex;
   flex-direction: row;
   gap: 0.65rem;
