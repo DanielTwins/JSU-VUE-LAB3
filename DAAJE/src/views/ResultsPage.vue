@@ -156,9 +156,9 @@ p {
 }
 
 .container {
-	display: flex;
+	/* display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: center; */
 	border-radius: 3rem;
 	overflow-x: hidden;
 	margin-top: auto;
@@ -172,4 +172,5 @@ p {
 	overflow: visible;
 	padding: 1rem 0;
 }
+
 </style>

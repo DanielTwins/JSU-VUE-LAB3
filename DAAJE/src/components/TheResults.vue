@@ -128,9 +128,9 @@ h3 {
 }
 
 .container {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   border-radius: 3rem;
   overflow-x: hidden;
   margin-top: auto;
