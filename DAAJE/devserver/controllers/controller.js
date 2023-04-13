@@ -1,5 +1,5 @@
 // controller functions for mongodb
-
+/* eslint-disable */
 // passport
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -53,6 +53,19 @@ async function findUserQuiz(id) {
 // Create a new quiz and embed
 exports.createQuiz = async(req, res) => {
     const id = req.params.id;
+    // format the quiz id(name) to be the same as the name with added underscores
+    if(!req.body.id || req.body.id === '') {
+        let nameString = req.body.name.split(' ');
+        let modifiedString = '';
+        for (let i of nameString) {
+            modifiedString += `${i}_`;
+        }
+        req.body.id = modifiedString.substring(0, modifiedString.length-1);
+    } else { req.body.id = undefined; } // setting to undefined allows the model to set the value to default
+    for(let i in req.body.questions) { // add id field starting from 1 to all questions in quiz
+        console.log(i);
+        req.body.questions[i].id = parseInt(i) + 1;
+    }
     const quizModel = await new Quiz(req.body);
 /*     const _user = await User.findById(id)
         .then(data => {
@@ -70,7 +83,7 @@ exports.createQuiz = async(req, res) => {
         { $push: {"created.quiz": quizModel} },
         { new: true, select: "created" },
     );
-    console.log(_user);
+    res.status(200);
 /*     (err, _data) => { 
         if(err) {
             return res.status(500).send(err)
