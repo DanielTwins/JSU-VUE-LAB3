@@ -42,19 +42,23 @@ export default {
       }
     },
     async handleLogIn() {
-      const usertoken = await axios.post(
-        "http://localhost:8080/post/login",
-        {
-          email: this.email,
-          password: this.password,
-        },
-      );
-      if (usertoken) {
-        localStorage.setItem('usertoken', usertoken.data); // store this in pinia instead? @johan
-        this.$loggedInStatus = true; // this bool is for tracking logged in status
-        // call methods here to update GUI with user details @chris
+      try {
+        const usertoken = await axios.post(
+          "http://localhost:8080/post/login",
+          {
+            email: this.email,
+            password: this.password,
+          },
+        );
+        if (usertoken) {
+          localStorage.setItem('usertoken', usertoken.data); // store this in pinia instead? @johan
+          this.$loggedInStatus = true; // this bool is for tracking logged in status
+          // call methods here to update GUI with user details @chris
+        }
+        this.showLogin(false);
+      } catch (error) {
+        this.passwordError = error.response.data;
       }
-      this.showLogin(false);
     },
     signingIn() { /* byt vy mellan signin/login */
       this.logIn = !this.logIn;
@@ -134,7 +138,7 @@ export default {
               type="password"
               required
             />
-            <p class="error-text" v-if="passwordError">Fel</p>
+            <p class="error-text" v-if="passwordError">Fel användarnamn eller lösenord ({{ passwordError }})</p>
           </div>
           <div class="submit-btn-container">
             <button type="submit" class="login-btn">Logga in</button>
