@@ -9,6 +9,7 @@ const db = require('../models');
 
 const User = db.user;
 const Quiz = db.quiz;
+const Result = db.result;
 
 // use definitions
 passport.use(
@@ -147,7 +148,25 @@ exports.getMockQuestions = async (req, res) => {
     for (const i of userQuizes) {
       quizes.push(i);
     }
-  }
-  res.status(200).send(quizes);
+    res.status(200).send(quizes);
+}; 
+exports.writeResult = async (req, res, next) => { //add error handlers
+    const uid = req.params.id;
+    const newResult = await new Result(req.body);
+    const updatedResults = await User.findOneAndUpdate(
+        { _id: uid }, 
+        { $push: {"results": newResult} },
+        { select: "results", new: true }
+    );
+    res.status(200).send(updatedResults);
+};
+exports.getUserResults = async (req, res) => {
+    const uid = req.params.id;
+    const results = await User.findOne(
+        { _id: uid }, 
+        "results"
+    );
+    console.log(results);
+    res.status(200).send(results);
 };
 exports.passport = passport;

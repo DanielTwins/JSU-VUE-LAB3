@@ -1,4 +1,6 @@
+<!-- eslint-disable -->
 <script>
+import axios from 'axios';
 import Chart from 'chart.js/auto';
 import { useResultStore } from "../stores/resultStore";
 
@@ -21,12 +23,16 @@ export default {
       userRole: "JavaScript Educator",
     };
   },
-  setup() {
+  async setup() { // hela setupen här bör skrivas om med hjälp av en fetch till results/uid som nedan
     const resultStore = useResultStore();
+    const userid = localStorage.getItem("usertoken");
+    const userResults = await axios(`http://localhost:8080/results/${userid}`);
+    
     const { fetchedResults } = resultStore;
+    console.log(fetchedResults);
     // guard clause for empty result array
-    if (fetchedResults.length > 0) {
-      const fetchedResultsShortened = [...fetchedResults[0].response.data.slice(1)];
+    if (userResults.length > 0) {
+      const fetchedResultsShortened = [...fetchedResults[0].response.data.results.slice(1)];
 
       const resultSumArray = [];
       let totalCorrectAnswers = 0;
