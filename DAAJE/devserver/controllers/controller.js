@@ -1,5 +1,6 @@
-// controller functions for mongodb
 /* eslint-disable */
+// controller functions for mongodb
+
 // passport
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -149,6 +150,7 @@ exports.getMockQuestions = async (req, res) => {
       quizes.push(i);
     }
     res.status(200).send(quizes);
+  }
 }; 
 exports.writeResult = async (req, res, next) => { //add error handlers
     const uid = req.params.id;
