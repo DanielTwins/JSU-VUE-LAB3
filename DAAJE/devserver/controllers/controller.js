@@ -22,7 +22,7 @@ passport.use(
           return done(null, false, { message: 'Incorrect e-mail' });
         }
         
-        bcrypt.compare(password, await user.password, (err, res) => {
+        await bcrypt.compare(password, user.password, (err, res) => {
           if (res) {
             // passwords match! Log user in
             return done(null, user);
