@@ -24,7 +24,6 @@ resultStore.$reset();
 
 const userid = localStorage.getItem("usertoken");
 const result = await axios.get(`http://localhost:8080/quiz_questions/${userid}`);
-console.log(result);
 const quizes = ref(result.data);
 
 const quizToShow = quizes.value.find((quiz) => quiz.id === paramsId);
@@ -49,11 +48,12 @@ const onChoiceSelected = async (isCorrect) => {
     //                 ** Await necessary when communicating with the store and sending data.
     //                 Incomplete objects were being sent!! **
     const resultData = await resultStore.results;
-
-    axios.post('http://localhost:8080/post/result?id=01', {
+                                                            //the _id of the taken quiz should be included here to track results for individual quizes
+    axios.post(`http://localhost:8080/post/result/${userid}?takenQuizId=`, {
       resultData,
     })
       .then((response) => {
+        console.log(response);
         resultStore.addResultSum({ response });
       })
       .catch((error) => {
