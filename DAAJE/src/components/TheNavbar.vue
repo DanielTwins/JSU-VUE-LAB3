@@ -1,54 +1,6 @@
-<!-- <script setup></script>
-
 <template>
   <nav class="navbar">
-    <ul>
-      <li><router-link to="/">Home</router-link></li>
-      <li><router-link to="/quiz">Quiz</router-link></li>
-      <li><router-link to="/result">Result</router-link></li>
-      <li><router-link to="/about">About</router-link></li>
-    </ul>
-  </nav>
-</template>
-
-<script>
-export default {
-  name: "Navbar",
-};
-</script>
-
-<style scoped>
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: #333;
-  color: #fff;
-}
-.navbar ul {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-.navbar ul li {
-  margin-right: 20px;
-}
-.navbar ul li:last-child {
-  margin-right: 0;
-}
-.navbar ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  font-size: 18px;
-}
-</style>
- -->
-<template>
-  <nav class="navbar">
-    <UserAvatar :img="imgPath" :userGreeting="userGreeting" :userDesc="userDesc" />
+    <UserAvatar />
     <div class="navbar-brand">
       <span class="navbar-toggle" @click="toggleMenu">
         <span></span>
@@ -78,11 +30,12 @@ export default {
 
 <script>
 import UserAvatar from './UserAvatar.vue';
+
 export default {
-    components:{
-        UserAvatar
-    },
-  name: 'Navbar',
+  components: {
+    UserAvatar,
+  },
+  name: 'TheNavbar',
   data() {
     return {
       isDropdownOpen: false,
@@ -115,7 +68,6 @@ export default {
   border-radius: 40px;
   background-color: var(--frosty-bg);
 }
-
 
 .navbar-brand {
     padding: 0 1rem 0 0;

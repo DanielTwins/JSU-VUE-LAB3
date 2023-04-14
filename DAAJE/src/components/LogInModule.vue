@@ -14,43 +14,55 @@ export default {
       userName: '',
       signEmail: '',
       signPassword: '',
-      loggedInStatus: false
+      loggedInStatus: false,
     };
   },
   methods: {
-    isUserLoggedIn() {
-      this.$emit('userLoggedIn', this.userLogIn);
-    },
     showLogin(boolean) {
       this.$emit('booleanToParent', boolean);
     },
-    async handleSignIn(){
-          console.log(
-        `Användarnamn ${this.userName}Epost ${this.signEmail}, lösenord ${this.signPassword}`
-      );
+    userIsLoggedIn(status) {
+        console.log("loginmodle"+ status)
+        this.$emit('loggedIn', status)
+    },
+    async handleRegisterNewUser() {
+      try {
+        console.log(
+          `Användarnamn ${this.userName}Epost ${this.signEmail}, lösenord ${this.signPassword}`,
+        );
         await axios.post("http://localhost:8080/post/new_user", {
-            username: this.userName,
-            email: this.signEmail,
-            password: this.userName
-          });
-        this.showLogin(false)
-        this.userName = ''
-        this.signEmail = ''
-
+          username: this.userName,
+          email: this.signEmail,
+          password: this.userName,
+        });
+        this.showLogin(false);
+        this.userName = '';
+        this.signEmail = '';
+        this.emailError = false;
+      } catch (error) {
+        this.emailError = error.response.data.message;
+      }
     },
     async handleLogIn() {
-      const usertoken = await axios.post("http://localhost:8080/post/login", 
+      try {
+        const usertoken = await axios.post(
+          "http://localhost:8080/post/login",
           {
             email: this.email,
-            password: this.password
-          }
-      );
-      if(usertoken) { 
-        localStorage.setItem('usertoken', usertoken.data); // store this in pinia instead? @johan
-        this.$loggedInStatus = true; // this bool is for tracking logged in status
-        // call methods here to update GUI with user details @chris
-      } 
-      this.showLogin(false);
+            password: this.password,
+          },
+        );
+        if (usertoken) {
+          localStorage.setItem('usertoken', usertoken.data); // store this in pinia instead? @johan
+          this.$loggedInStatus = true; // this bool is for tracking logged in status
+          // call methods here to update GUI with user details @chris
+        }
+        this.passwordError = false;
+        this.showLogin(false);
+        this.userIsLoggedIn(this.$loggedInStatus)
+      } catch (error) {
+        this.passwordError = error.response.data;
+      }
     },
     signingIn() { /* byt vy mellan signin/login */
       this.logIn = !this.logIn;
@@ -120,7 +132,7 @@ export default {
           <div class="input-container">
             <label for="email" class="input-label">Epost</label>
             <input class="input-value" v-model="email" type="email" required />
-            <p class="error-text" v-if="emailError">Fel</p>
+            <p class="error-text" v-if="emailError">Fel, {{ emailError }}</p>
           </div>
           <div class="input-container">
             <label for="password" class="input-label">Lösenord</label>
@@ -130,7 +142,7 @@ export default {
               type="password"
               required
             />
-            <p class="error-text" v-if="passwordError">Fel</p>
+            <p class="error-text" v-if="passwordError">Fel användarnamn eller lösenord ({{ passwordError }})</p>
           </div>
           <div class="submit-btn-container">
             <button type="submit" class="login-btn">Logga in</button>
@@ -146,7 +158,7 @@ export default {
 
         <form
           v-show="!logIn"
-          @submit.prevent="handleSignIn"
+          @submit.prevent="handleRegisterNewUser"
           class="login-new-container"
         >
           <div class="input-container">
@@ -177,7 +189,7 @@ export default {
               type="email"
               required
             />
-            <p class="error-text" v-if="emailError">Fel</p>
+            <p class="error-text" v-if="emailError">Fel, {{ emailError }}</p>
           </div>
           <div class="submit-btn-container">
             <button type="submit" class="login-btn">
@@ -204,19 +216,8 @@ export default {
   bottom: 0.3rem;
 }
 .login-wrapper {
-  /* --black: #000000;
-  --white: #ffffff;
-  --purple: #5f0a87;
-  --light-purple: #D3C8E4;
-  --error: #A81621; */
   display: grid;
   grid-template-columns: 5px auto 5px;
-  /* position: fixed;
-  z-index: 9999;
-  top: 0.2rem;
-  left: 0.3rem;
-  right: 0.3rem;
-  bottom: 0.3rem; */
 }
 
 .clickable-area{
@@ -230,11 +231,6 @@ export default {
   background-color: var(--frosty-purple-bg);
   backdrop-filter: blur(20px);
   border-radius: 10px;
-
-  /* olika färger till bakgrundet */
-  /* background-color: rgba(244, 244, 244, 0.65); */
-  /* background-color: rgba(95, 10, 135, 0.5); */
-  /* overflow: scroll; */
 }
 
 @media (min-width: 400px) {
@@ -368,11 +364,6 @@ button {
 .signIn-btn {
   color: var(--purple);
   border: 3px solid var(--purple);
-
-  /* ett försök till gradient stroke */
-  /* border-style: solid;
-  border-width: 3px; */
-  /* border-image: linear-gradient(306deg, #c164ec 0%, #5f0a87 84%) 1; */
 }
 
 .forgot-btn-container {
