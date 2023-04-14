@@ -1,3 +1,4 @@
+/* eslint-disable */
 const user = mongoose => {
     const User = mongoose.model(
       "user",

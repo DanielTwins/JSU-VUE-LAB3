@@ -1,136 +1,160 @@
 <script>
-import Chart from 'chart.js/auto'
-import { useResultStore } from '../stores/resultStore'
+import Chart from 'chart.js/auto';
+import { useResultStore } from '../stores/resultStore';
+
 const ShadowPlugin = {
   beforeDraw: (chart) => {
     const { ctx } = chart;
-    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
     ctx.shadowBlur = 10;
-    ctx.shadowOffsetX = -10;
-    ctx.shadowOffsetY = -5;
-  }
+    ctx.shadowOffsetX = 10;
+    ctx.shadowOffsetY = 5;
+  },
 };
 export default {
-    name: 'TheResults',
-    props: {
-        quizLength: Number,
-        sumOfCorrectAnswers: Number,
-        studentId: Number,
-        teacher: Boolean
-    },
-    setup() {
-        const resultStore = useResultStore()
+  name: 'TheResults',
+  props: {
+    quizLength: Number,
+    sumOfCorrectAnswers: Number,
+    studentId: Number,
+    teacher: Boolean,
+  },
+  setup() {
+    const resultStore = useResultStore();
 
-        const question = resultStore.results.question
-        const answers = resultStore.results.option
-        const results = resultStore.results
+    const { question } = resultStore.results;
+    const answers = resultStore.results.option;
+    const { results } = resultStore;
 
-        return { question, answers, results }
-    },
-    data() {
-        return {
-            welcomeMessage: '',
-            fetchedResultData: [],
-        }
-    },
-    methods: {},
-    mounted() {
-        const ctx = document.getElementById('myChart');
-        const MyChart = new Chart(ctx, {
-            type: "pie",
-            data: {
-                labels: ["Rätt svar", "Fel svar"],
-                datasets: [
-                    {
-                        label: "Resultat av Quiz",
-                        data: [this.sumOfCorrectAnswers, (this.quizLength - this.sumOfCorrectAnswers)],
-                        // backgroundColor: "rgba(54,73,93,.5)",
-                        // borderColor: "#36495d",
-                        borderWidth: 3
-                    },
-                ],
+    return { question, answers, results };
+  },
+  mounted() {
+    const ctx = document.getElementById('myChart');
+    const MyChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Rätt svar', 'Fel svar'],
+        datasets: [
+          {
+            label: 'Resultat av Quiz',
+            data: [
+              this.sumOfCorrectAnswers,
+              this.quizLength - this.sumOfCorrectAnswers,
+            ],
+            // backgroundColor: "rgba(54,73,93,.5)",
+            // borderColor: "#36495d",
+            borderWidth: 3,
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            labels: {
+              color: 'white',
+              font: {
+                Size: 18,
+              },
             },
-            options: {
-				plugins: {
-					legend: {
-						labels: {
-							color: 'white',
-							font: {
-								Size: 18
-							}
-						}
-					}
-				}
-			},
-            plugins: [ShadowPlugin]
-        })
-        MyChart;
-    }
-}
+          },
+        },
+      },
+      plugins: [ShadowPlugin],
+    });
+    // eslint-disable-next-line no-unused-expressions
+    MyChart;
+  },
+};
 </script>
 
 <template>
-<div class="white-bg">
+  <div class="white-bg">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <h3>Resultat av ditt quiz!</h3>
-                <div class="chart-container">
-                    <canvas id="myChart"></canvas>
-                </div>
-                <h3 class="mb-3">Enskilda resultat av frågor:</h3>
-                <div v-for="(result, index) in results">
-                    <h5>Fråga {{ index + 1 }}, {{ result.question.text }}</h5>
-                    <p>
-                        Rätt svar:
-                        {{
-                            result.question.options.filter(
-                                (option) => option.isCorrect === true
-                            )[0].label
-                        }},
-                        {{
-                            result.question.options.filter(
-                                (option) => option.isCorrect === true
-                            )[0].text
-                        }}
-                    </p>
-                    <p class="pb-3" :style="{
-                        color: result.option.isCorrect
-                            ? '#198754'
-                            : '#dc3545'
-                    }">
-                        Du valde: {{ result.option.label }}.
-                        {{ result.option.text }}
-                    </p>
-                </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <h3>Resultat av ditt quiz!</h3>
+          <div class="chart-container">
+            <canvas id="myChart"></canvas>
+          </div>
+          <h3 class="mb-4">Enskilda resultat av frågor:</h3>
+          <div
+            v-for="(result, index) in results"
+            :key="index"
+            class="mb-4 question"
+          >
+            <h5>Fråga {{ index + 1 }}, {{ result.question.text }}</h5>
+            <p>
+              Rätt svar:
+              {{
+                result.question.options.filter(
+                  (option) => option.isCorrect === true
+                )[0].label
+              }},
+              {{
+                result.question.options.filter(
+                  (option) => option.isCorrect === true
+                )[0].text
+              }}
+            </p>
+            <p
+              class="pb-2"
+              :style="{
+                color: result.option.isCorrect ? '#198754' : '#dc3545',
+              }"
+            >
+              Du valde: {{ result.option.label }}.
+              {{ result.option.text }}
+            </p>
+            <div class="pb-3 whyCorrect" v-if="!result.option.isCorrect">
+              <p>Anledning till rätt svar:</p>
+              <p>
+                {{
+                  result.question.options.filter(
+                    (option) => option.isCorrect === true
+                  )[0].whyCorrect
+                }}
+              </p>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <style scoped>
 h3 {
-    text-align: center;
+  text-align: center;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 3rem;
-    overflow-x: hidden;
-    margin-top: auto;
-    background-color: rgba(255, 255, 255, 0.844);
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  border-radius: 3rem;
+  overflow-x: hidden;
+  margin-top: auto;
+  background-color: rgba(255, 255, 255, 0.844);
 }
 
 .row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: visible;
-    padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  padding: 1rem 0;
 }
 
+.question {
+  border: 3px gray dotted;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
 
+.whyCorrect {
+  color: white;
+  background-color: #5f0a87d0;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
 </style>
