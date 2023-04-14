@@ -22,6 +22,7 @@ export default {
       this.$emit('booleanToParent', boolean);
     },
     userIsLoggedIn(status) {
+        console.log("loginmodle"+ status)
         this.$emit('loggedIn', status)
     },
     async handleRegisterNewUser() {
@@ -58,6 +59,7 @@ export default {
         }
         this.passwordError = false;
         this.showLogin(false);
+        this.userIsLoggedIn(this.$loggedInStatus)
       } catch (error) {
         this.passwordError = error.response.data;
       }

@@ -22,8 +22,10 @@ export default {
     toggleShowLogin() {
       this.showLogin = !this.showLogin;
     },
-    userLogIn(status) {
-      if (localStorage.getItem('usertoken')) {
+    async userLogIn(status) {
+        console.log(status)
+        const userId = await localStorage.getItem('usertoken')
+      if (userId) {
         this.userName = 'User is logged in'
         this.userLoggedIn = status
       }
