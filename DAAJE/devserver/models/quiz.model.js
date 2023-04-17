@@ -1,5 +1,4 @@
 /* eslint-disable */
-const { user } = require("./user.model");
 
 const mockQuiz = mongoose => {
     const Quiz = mongoose.model(
@@ -18,7 +17,10 @@ const mockQuiz = mongoose => {
           questions: Array,
           category: String,
           language: String,
-          usersTakenQuiz: [{ type: mongoose.Schema.Types.ObjectId, ref: user }]
+          usersTakenQuiz: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user'
+          }]
         },
         {
           _id: true

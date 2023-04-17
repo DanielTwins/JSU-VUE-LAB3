@@ -48,8 +48,8 @@ const onChoiceSelected = async (isCorrect) => {
     //                 ** Await necessary when communicating with the store and sending data.
     //                 Incomplete objects were being sent!! **
     const resultData = await resultStore.results;
-                                                            //the _id of the taken quiz should be included here to track results for individual quizes
-    axios.post(`http://localhost:8080/post/result/${userid}?takenQuizId=`, {
+                                                      //the _id of the taken quiz **add origin user id to end of url. sample user provided
+    axios.post(`http://localhost:8080/post/result/${userid}/${quizToShow._id}/643d4871958ac15c967dd034`, {
       resultData,
     })
       .then((response) => {

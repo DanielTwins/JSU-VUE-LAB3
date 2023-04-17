@@ -1,21 +1,17 @@
 /* eslint-disable */
 
-const { ObjectID } = require("bson");
-const { ObjectId } = require("mongodb");
-
 const result = mongoose => {
     const Result = mongoose.model(
         "result",
         mongoose.Schema(
             {
                 takenQuizId: {
-                    type: ObjectId,
+                    type: mongoose.Types.ObjectId
                   },
                 resultData: {
                     type: Array,
                     required: true
-                  },
-                
+                  },       
             },
             {
                 _id: true,

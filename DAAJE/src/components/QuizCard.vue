@@ -1,4 +1,9 @@
 <template>
+  <div>
+    <AppButton @click="takeOtherUserQuiz" width="" color="primary" size="small" padding="p-small">
+      Take another users quiz!
+    </AppButton>
+  </div>
   <section>
     <div class="quiz-container">
       <div class="quiz-info">
@@ -33,6 +38,9 @@ const { quiz } = defineProps(["quiz"]);
 const router = useRouter();
 
 const goToQuiz = () => {
+  router.push(`/quiz/${quiz.id}`);
+};
+const takeOtherUserQuiz = () => {
   router.push(`/quiz/${quiz.id}`);
 };
 </script>

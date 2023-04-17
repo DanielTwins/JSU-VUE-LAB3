@@ -10,11 +10,10 @@ const { passport } = require("../controllers/controller");
 /* GET request for quiz content */
 router.get("/quiz_questions/:id?", controller.getMockQuestions);
 router.get("/results/:id", controller.getUserResults);
-//router.post("/post/create_quiz", mwFunction.assignQuizId, mwFunction.writeNewQuiz);
 // **NEW mongoDB route**
 router.post("/post/create_quiz/:id", controller.createQuiz);
 /* POST and send compiled stundent result data */
-router.post("/post/result/:id", controller.writeResult); // **remember to listen for "id" query if needed**
+router.post("/post/result/:id/:takenQuizId/:userOrigin?", controller.writeResult); // **remember to listen for "id" query if needed**
 /* POST create a new user in mongoDB from the register form */
 router.post("/post/new_user", controller.createUser);
 /* POST Login */
