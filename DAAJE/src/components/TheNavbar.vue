@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
   <nav class="navbar">
     <UserAvatar />
@@ -27,7 +28,7 @@
     </ul>
   </nav>
 </template>
-
+<!-- eslint-disable -->
 <script>
 import UserAvatar from './UserAvatar.vue';
 
@@ -53,9 +54,10 @@ export default {
   },
 };
 </script>
-
+<!-- eslint-disable -->
 <style>
 .navbar {
+    margin: 0 -20px;
     box-sizing: border-box;
   display: flex;
   justify-content: space-between;
