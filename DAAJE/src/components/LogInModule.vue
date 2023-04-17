@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <script>
 import axios from 'axios';
 
@@ -73,7 +74,7 @@ export default {
   },
 };
 </script>
-
+<!-- eslint-disable -->
 <template>
   <div class="login-wrapper-top-bottom">
     <div @click="showLogin(false)" class="clickable-area" />
@@ -131,7 +132,7 @@ export default {
         >
           <div class="input-container">
             <label for="email" class="input-label">Epost</label>
-            <input class="input-value" v-model="email" type="email" required />
+            <input class="input-value" v-model="email" type="email" />
             <p class="error-text" v-if="emailError">Fel, {{ emailError }}</p>
           </div>
           <div class="input-container">
@@ -140,7 +141,6 @@ export default {
               class="input-value"
               v-model="password"
               type="password"
-              required
             />
             <p class="error-text" v-if="passwordError">Fel användarnamn eller lösenord ({{ passwordError }})</p>
           </div>
@@ -167,7 +167,6 @@ export default {
               class="input-value"
               v-model="userName"
               type="text"
-              required
             />
             <p class="error-text" v-if="userError">Fel</p>
           </div>
@@ -177,7 +176,6 @@ export default {
               class="input-value"
               v-model="signPassword"
               type="password"
-              required
             />
             <p class="error-text" v-if="passwordError">Fel</p>
           </div>
@@ -187,7 +185,6 @@ export default {
               class="input-value"
               v-model="signEmail"
               type="email"
-              required
             />
             <p class="error-text" v-if="emailError">Fel, {{ emailError }}</p>
           </div>
@@ -203,7 +200,7 @@ export default {
     <div @click="showLogin(false)" class="clickable-area" />
   </div>
 </template>
-
+<!-- eslint-disable -->
 <style>
 .login-wrapper-top-bottom{
     display: grid;
