@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <script setup>
 import { useRoute } from "vue-router";
 import { ref, computed } from "vue";

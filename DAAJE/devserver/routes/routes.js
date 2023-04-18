@@ -9,6 +9,7 @@ const { passport } = require("../controllers/controller");
 
 /* GET request for quiz content */
 router.get("/quiz_questions/:id?", controller.getMockQuestions);
+router.get("/shared_quiz_questions/:originUserId/:quizId");
 router.get("/results/:id", controller.getUserResults);
 // **NEW mongoDB route**
 router.post("/post/create_quiz/:id", controller.createQuiz);

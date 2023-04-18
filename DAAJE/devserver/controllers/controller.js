@@ -152,6 +152,11 @@ exports.getMockQuestions = async (req, res) => {
     res.status(200).send(quizes);
   }
 }; 
+exports.getSpecifiedUserQuiz = (req, res) => {
+  const ouid = req.params.originUserId;
+  const quizId = req.params.quizId;
+  // return desired quiz
+};
 exports.writeResult = async (req, res, next) => { //add error handlers
     const uid = req.params.id;
     const takenQuizId = req.params.takenQuizId;
