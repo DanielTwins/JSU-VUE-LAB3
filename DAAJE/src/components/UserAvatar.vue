@@ -1,5 +1,7 @@
+<!-- eslint-disable -->
 <script>
-import userImage from '../imgs/Richard.jpg';
+import userImage from '../imgs/avatar_placeholder.png';
+import placeHolderAvatarImg from '../imgs/placeholderAvatarImg.png';
 import LoginModule from './LogInModule.vue';
 
 export default {
@@ -10,9 +12,9 @@ export default {
     return {
       showLogin: false,
       userLoggedIn: false,
-      avatarImg: userImage,
-      userName : "Hello Quizzer",
-      userRole : ''
+      avatarImg: placeHolderAvatarImg,
+      userName: 'Hello Quizzer!',
+      userRole: '',
     };
   },
   methods: {
@@ -23,11 +25,13 @@ export default {
       this.showLogin = !this.showLogin;
     },
     async userLogIn(status) {
-        console.log(status)
-        const userId = await localStorage.getItem('usertoken')
+      const userId = await localStorage.getItem('usertoken');
+      console.log(userId)
       if (userId) {
-        this.userName = 'User is logged in'
-        this.userLoggedIn = status
+        // get userName from userToken
+        this.userName = 'Quizninja';
+        this.avatarImg = userImage
+        this.userLoggedIn = status;
       }
     },
     logOutUser() {
@@ -36,15 +40,15 @@ export default {
   },
 };
 </script>
-
+<!-- eslint-disable -->
 <template>
   <section class="avatar-wrapper">
     <div class="avatar-container">
-      <img class="avatar-image" src="../imgs/Richard.jpg" />
+      <img class="avatar-image" :src=avatarImg />
     </div>
     <div class="avatar-info">
-      <p class="user-info">{{userName}}</p>
-      <p class="user-info">{{userRole}}</p>
+      <p class="user-info">{{ userName }}</p>
+      <p class="user-info">{{ userRole }}</p>
       <div class="login-user-btn-container">
         <button
           v-if="!userLoggedIn"
@@ -65,7 +69,7 @@ export default {
     v-show="showLogin"
   />
 </template>
-
+<!-- eslint-disable -->
 <style>
 .avatar-wrapper {
   padding: 0 0.5rem;
@@ -100,12 +104,11 @@ export default {
   text-transform: capitalize;
 }
 
-.user-info{
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    line-height: 16px;
-
+.user-info {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 .login-user-btn,
@@ -118,7 +121,7 @@ export default {
   cursor: pointer;
 }
 
-.logout-user-btn{
-    color: var(--light-purple)
+.logout-user-btn {
+  color: var(--light-purple);
 }
 </style>
