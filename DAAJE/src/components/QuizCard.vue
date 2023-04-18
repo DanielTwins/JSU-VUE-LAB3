@@ -1,9 +1,4 @@
 <template>
-  <div>
-    <AppButton @click="takeOtherUserQuiz" width="" color="primary" size="small" padding="p-small">
-      Take another users quiz!
-    </AppButton>
-  </div>
   <section>
     <div class="quiz-container">
       <div class="quiz-info">

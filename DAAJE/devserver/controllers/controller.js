@@ -156,7 +156,7 @@ exports.writeResult = async (req, res, next) => { //add error handlers
     const uid = req.params.id;
     const takenQuizId = req.params.takenQuizId;
     const userOrigin = req.params.userOrigin;
-    const newResult = await new Result({resultData: req.body, takenQuizId: takenQuizId});
+    const newResult = await new Result({resultData: req.body.resultData, takenQuizId: takenQuizId});
     const updatedResults = await User.findOneAndUpdate(
         { _id: uid }, 
         { $push: {"results": newResult} },
