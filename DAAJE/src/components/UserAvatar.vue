@@ -17,6 +17,9 @@ export default {
       userRole: '',
     };
   },
+  created(){
+    this.userLogIn()
+  },
   methods: {
     received(boolean) {
       this.showLogin = boolean;
@@ -31,7 +34,7 @@ export default {
         // get userName from userToken
         this.userName = 'Quizninja';
         this.avatarImg = userImage
-        this.userLoggedIn = status;
+        this.userLoggedIn = true;
       }
     },
     logOutUser() {
