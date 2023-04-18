@@ -1,13 +1,15 @@
 <template>
   <section class="d-flex">
     <QuizCard v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
+    <hr />
+    <QuizCard v-for="quiz in showCustomQuizFromElis" :key="quiz.id" :quiz="quiz" />
   </section>
 </template>
 
 <script>
 import axios from "axios";
-import QuizCard from "./QuizCard.vue";
 import { ref } from "vue";
+import QuizCard from "./QuizCard.vue";
 
 export default {
   components: { QuizCard },
@@ -15,7 +17,13 @@ export default {
     const userid = localStorage.getItem("usertoken");
     const result = await axios.get((userid? `http://localhost:8080/quiz_questions/${userid}` : "http://localhost:8080/quiz_questions"));
     const quizes = ref(result.data);
-      return { quizes };
+
+    // add new list of custom quizzes from another user
+    const getCustomQuizFromElis = await axios.get(("http://localhost:8080/quiz_questions/643d4871958ac15c967dd034"));
+    const showCustomQuizFromElis = ref(getCustomQuizFromElis.data.slice(4));
+    console.log(showCustomQuizFromElis);
+    console.log(quizes);
+    return { quizes, showCustomQuizFromElis };
   },
 };
 </script>
