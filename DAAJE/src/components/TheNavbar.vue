@@ -11,19 +11,19 @@
     </div>
     <ul class="navbar-menu" :class="menu">
       <li>
-        <router-link to="/" @click="toggleMenu">Home</router-link>
+        <router-link to="/" @click="runToggleMenu">Home</router-link>
       </li>
 
       <li>
-        <router-link to="/quiz" @click="toggleMenu">Quiz</router-link>
+        <router-link to="/quiz" @click="runToggleMenu">Quiz</router-link>
       </li>
 
       <li>
-        <router-link to="/results" @click="toggleMenu">Results</router-link>
+        <router-link to="/results" @click="runToggleMenu">Results</router-link>
       </li>
 
       <li>
-        <router-link to="/about" @click="toggleMenu">About</router-link>
+        <router-link to="/about" @click="runToggleMenu">About</router-link>
       </li>
     </ul>
   </nav>
@@ -39,12 +39,30 @@ export default {
   name: 'TheNavbar',
   data() {
     return {
+      isFunctionDisabled: false,
       isDropdownOpen: false,
       menu: 'desktop-mode',
     };
   },
+  mounted() {
+    window.addEventListener('resize', this.handleScreenSizeChange);
+    this.handleScreenSizeChange();
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.handleScreenSizeChange);
+  },
   methods: {
+    handleScreenSizeChange() {
+      this.isFunctionDisabled = window.innerWidth > 1024;
+    },
+    runToggleMenu() {
+      if (!this.isFunctionDisabled) {
+        console.log('Är igång')
+        this.toggleMenu();
+      }
+    },
     toggleMenu() {
+        console.log('menuknapp')
       if (this.menu === 'navbar-menu--open') {
         this.menu = 'desktop-mode';
       } else {
@@ -57,8 +75,8 @@ export default {
 <!-- eslint-disable -->
 <style>
 .navbar {
-    margin: 0 -20px;
-    box-sizing: border-box;
+  margin: 0 -20px;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -72,7 +90,7 @@ export default {
 }
 
 .navbar-brand {
-    padding: 0 1rem 0 0;
+  padding: 0 1rem 0 0;
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -180,7 +198,7 @@ export default {
       grid-template-columns: repeat(4,80px); */
   }
 
-  .navbar{
+  .navbar {
     padding: 0 !important;
   }
 
