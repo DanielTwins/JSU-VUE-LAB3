@@ -20,7 +20,12 @@ export default {
 
     // add new list of custom quizzes from another user
     const getCustomQuizFromElis = await axios.get(("http://localhost:8080/quiz_questions/643d4871958ac15c967dd034"));
+
+    // använder slize för att endast få den sista frågan med.
+    // för att undvika dem 3 första vanliga som redan finns.
     const showCustomQuizFromElis = ref(getCustomQuizFromElis.data.slice(4));
+
+    // konsol loggar för att se att dem verkar identiska
     console.log(showCustomQuizFromElis);
     console.log(quizes);
     return { quizes, showCustomQuizFromElis };
