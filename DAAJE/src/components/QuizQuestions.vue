@@ -5,7 +5,8 @@
     <ResultCard
     v-for="quiz in quizes"
     :key="quiz.id"
-    :quiz="quiz" />
+    :quiz="quiz"
+    />
   </section>
 </template>
 

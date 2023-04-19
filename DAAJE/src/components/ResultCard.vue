@@ -15,15 +15,16 @@
           <div class="quiz-class-result-info-item">
             <span>{{ classResult }}%</span> correct
           </div>
-          <button @click="toQuizResults" class="to-result-btn">
-            See full results
-          </button>
         </div>
       </div>
       <div class="quiz-container">
         <div class="quiz-info">
           <div class="quiz-class-info-container">
-            <p class="question-info">{{ quiz.questions.length }} st. frågor</p>
+            <p class="question-info">
+              {{ quiz.questions.length }}
+              {{ quiz.questions.length > 1 ? 'questions' : 'question' }}
+            </p>
+
             <ul class="question-category-container">
               <li
                 v-for="category in quizCategory"
@@ -33,25 +34,11 @@
                 {{ category.category }}
               </li>
             </ul>
-            <!-- <button class="to-result-btn">See results</button> -->
           </div>
-          <!-- <div class="quiz-category-info">
-          </div> -->
-        </div>
-
-        <!-- <button @click="goToQuiz">Start Quiz!</button> -->
-        <!-- <div class="start-question-btn-container">
-          <button @click="goToQuiz" class="start-question-btn">
-            Start Random Quiz!
+          <button @click="toQuizResults" class="start-question-btn">
+            See full result
           </button>
-          <button class="start-question-btn">Create from categories!</button>
-        </div> -->
-      </div>
-      <div class="start-question-btn-container">
-        <button @click="goToQuiz" class="start-question-btn">
-          Start Random Quiz!
-        </button>
-        <button @click="createQuizFromCategory" class="start-question-btn">Create from categories!</button>
+        </div>
       </div>
     </div>
   </section>
@@ -65,6 +52,10 @@ import QuizCategoryComp from './QuizCategoryComp.vue';
 const { quiz } = defineProps(['quiz']);
 const router = useRouter();
 
+// Tar en till Results
+const toQuizResults = () => {
+  router.push(`/results`);
+};
 const goToQuiz = () => {
   router.push(`/quiz/${quiz.id}`);
 };
@@ -104,14 +95,10 @@ export default {
   //         quizCategory : this.quizCategory
   //     },
   methods: {
-    toQuizResults() {
-      console.log('Till Quizresult');
-      //   ROUTE?
+    createQuizFromCategory() {
+      console.log('Create quiz from category');
+      // ROUTE
     },
-    createQuizFromCategory(){
-        console.log('Create quiz from category')
-        // ROUTE
-    }
   },
 };
 </script>
@@ -141,7 +128,7 @@ ul {
 }
 
 .quiz-header-container {
-  margin: .3rem;
+  margin: 0.3rem;
   display: flex;
   justify-content: start;
   gap: 0.2rem;
@@ -158,9 +145,7 @@ ul {
 }
 
 .quiz-detail {
-  display: flex;
-  gap: 0.5rem;
-  flex-direction: column;
+  padding: 0.3rem;
 }
 
 .quiz-class-result-info-item {
@@ -182,7 +167,7 @@ ul {
   }
 }
 
-.to-result-btn {
+.start-question-btn {
   color: var(--white);
   background-image: var(--quiz-gradient);
   cursor: pointer;
@@ -193,15 +178,13 @@ ul {
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  /* align-items: center; */
   gap: 0.3rem;
 }
 
 .quiz-info {
   gap: 0.6rem;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
+  display: flex;
+  justify-content: space-between;
 }
 
 .quiz-header {
@@ -225,48 +208,12 @@ img {
   height: auto;
 }
 
-/* .start-question-btn-container {
-  display: grid;
-  gap: 0.9rem;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 1024px) {
-  .start-question-btn-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-  }
-} */
-
-.start-question-btn-container {
-    padding-bottom: .4rem;
-  margin: 0.3rem;
-  display: grid;
-  gap: 0.9rem;
-  grid-template-columns: 1fr 1fr;
-}
-.start-question-btn {
-  color: var(--white);
-  background-image: var(--quiz-gradient);
-  /* color: var(--purple);
-  border: 3px solid var(--purple); */
-  /* font-weight: bold; */
-  cursor: pointer;
-  padding: 0.3rem;
-  border-radius: 10px;
-}
-
 .question-category-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem;
   margin: 0.5rem 0;
   padding: 0.1rem;
-  /* max-height: 50px;
-    overflow: scroll;
-    max-width: 200px; */
 }
 
 .question-category-item {
@@ -277,17 +224,5 @@ img {
 }
 .question-category-item:last-child {
   border-right: none;
-}
-
-/* @media (min-width: 576px) {
-  .question-category-item {
-    border: none;
-  }
-} */
-
-.quiz-class-info-container {
-}
-
-.quiz-class-info-item {
 }
 </style>
