@@ -171,7 +171,7 @@ ul {
   color: var(--white);
   background-image: var(--quiz-gradient);
   cursor: pointer;
-  padding: 0.1rem 0.3rem;
+  padding: 0.5rem 0.6rem;
   border-radius: 10px;
 }
 .quiz-container {
