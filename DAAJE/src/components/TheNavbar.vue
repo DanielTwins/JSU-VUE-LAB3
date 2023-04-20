@@ -19,7 +19,7 @@
       </li>
 
       <li>
-        <router-link to="/results" @click="runToggleMenu">Results</router-link>
+        <router-link to="/results-view" @click="runToggleMenu">Results</router-link>
       </li>
 
       <li>

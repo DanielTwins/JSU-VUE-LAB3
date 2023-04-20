@@ -6,6 +6,7 @@
     --error: #A81621;
     --frosty-bg: rgba(255, 255, 255, 0.2);
     --frosty-purple-bg : rgba(211, 200, 228, 0.6);
+    --quiz-gradient: linear-gradient(306deg, #c164ec 0%, #5f0a87 84%);
 }
 
 body{
