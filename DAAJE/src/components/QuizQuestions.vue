@@ -1,13 +1,8 @@
 <template>
   <section class="d-flex">
-    <!-- <button style="border: 1px solid black">Knapp till Result</button> -->
-    <!-- <QuizCard v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" /> -->
-    <QuizCard
-    v-for="quiz in quizes"
-    :key="quiz.id"
-    :quiz="quiz"
-    />
-
+    <QuizCard v-for="quiz in quizes" :key="quiz.id" :quiz="quiz" />
+     <hr />
+     <QuizCard v-for="quiz in showCustomQuizFromElis" :key="quiz.id" :quiz="quiz" />
   </section>
 </template>
 
