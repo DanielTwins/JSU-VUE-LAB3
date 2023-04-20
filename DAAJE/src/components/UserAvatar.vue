@@ -38,7 +38,10 @@ export default {
       }
     },
     logOutUser() {
-      console.log('Loggar ut');
+      localStorage.clear();
+      this.userName = 'Hello Quizzer!';
+      this.avatarImg = placeHolderAvatarImg
+      this.userLoggedIn = false;
     },
   },
 };
@@ -60,7 +63,7 @@ export default {
         >
           Logga in / Skapa konto
         </button>
-        <button v-if="userLoggedIn" @click="logOutUser" class="logout-user-btn">
+          <button v-if="userLoggedIn" @click="logOutUser" class="logout-user-btn">
           Logga ut
         </button>
       </div>
