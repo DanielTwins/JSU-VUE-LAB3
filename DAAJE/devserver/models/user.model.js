@@ -22,7 +22,10 @@ const user = mongoose => {
            },
           associated: {
             quiz: Array,
-            students: Array
+            students: [{
+              type: mongoose.Schema.Types.ObjectId,
+              ref: user
+            }]
            },
           created: {
             quiz: Array

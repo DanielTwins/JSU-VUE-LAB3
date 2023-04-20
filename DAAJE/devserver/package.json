@@ -19,6 +19,8 @@
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "query-string": "^8.1.0",
+    "querystring": "^0.2.1",
     "uuid": "^9.0.0",
     "validator": "^13.7.0"
   }

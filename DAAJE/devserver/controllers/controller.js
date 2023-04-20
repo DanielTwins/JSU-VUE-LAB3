@@ -7,7 +7,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 // mongodb
 const db = require('../models');
-
+const { mongoose } = require('../models');
 const User = db.user;
 const Quiz = db.quiz;
 const Result = db.result;
@@ -152,14 +152,60 @@ exports.getMockQuestions = async (req, res) => {
     res.status(200).send(quizes);
   }
 }; 
+exports.getSpecifiedUserQuiz = async (req, res) => {
+  const ouid = mongoose.Types.ObjectId(req.params.originUserId);
+  const quizId = mongoose.Types.ObjectId(req.params.quizId);
+  const foundQuiz = await User.aggregate([
+    {
+      '$match': {
+        '_id': ouid
+      }
+    }, {
+      '$project': {
+        'created.quiz': {
+          '$filter': {
+            'input': '$created.quiz', 
+            'as': 'quizes', 
+            'cond': {
+              '$eq': [
+                '$$quizes._id', quizId
+              ]
+            }
+          }
+        }
+      }
+    }, {
+      '$project': {
+        'created.quiz.usersTakenQuiz': 0
+      }
+    }, {
+      '$replaceRoot': {
+        'newRoot': '$created'
+      }
+    }
+  ]);
+  // return desired quiz. Syntax is messy but necessary unless sorting is improved in pipeline
+  res.status(200).send(foundQuiz[0].quiz);
+};
 exports.writeResult = async (req, res, next) => { //add error handlers
     const uid = req.params.id;
-    const newResult = await new Result(req.body);
+    const takenQuizId = req.params.takenQuizId;
+    const userOrigin = req.params.userOrigin;
+    const newResult = await new Result({resultData: req.body.resultData, takenQuizId: takenQuizId});
     const updatedResults = await User.findOneAndUpdate(
         { _id: uid }, 
         { $push: {"results": newResult} },
         { select: "results", new: true }
     );
+    // cast to appropriate BSON identifiers for mongodb to work
+    const typeCastId = new mongoose.Types.ObjectId(uid);
+    const typeCastTakenQuizId = new mongoose.Types.ObjectId(takenQuizId);
+    // add the user who did the quiz, to the creators result-tracking array(id only, populate with model later)
+    const updatedEndUser = await User.updateOne(
+      { _id: userOrigin, "created.quiz._id": typeCastTakenQuizId },
+      { $push: {"created.quiz.$.usersTakenQuiz": typeCastId} }
+    );
+    console.log(updatedEndUser); //if modified count is 0, no custom-quiz creator was found
     res.status(200).send(updatedResults);
 };
 exports.getUserResults = async (req, res) => {
