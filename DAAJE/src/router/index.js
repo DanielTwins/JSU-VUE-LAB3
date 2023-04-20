@@ -7,6 +7,7 @@ import QuizCategory from '../views/QuizCategory.vue';
 import QuizView from '../views/QuizView.vue';
 import NotFound from '../views/NotFound.vue';
 import ResultsPage from '../views/ResultsPage.vue';
+import ResultsView from '../views/ResultsView.vue'
 import CreateQuizPage from '../views/CreateQuizPage.vue';
 
 // const result = await axios.get('http://localhost:8080/quiz_questions');
@@ -54,6 +55,11 @@ const routes = [
     path: '/results',
     name: 'ResultsPage',
     component: ResultsPage,
+  },
+  {
+    path: '/results-view',
+    name: 'ResultsView',
+    component: ResultsView,
   },
   {
     path: '/create-quiz',
