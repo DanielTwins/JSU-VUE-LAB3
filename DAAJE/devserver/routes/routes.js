@@ -11,6 +11,7 @@ const { passport } = require("../controllers/controller");
 router.get("/quiz_questions/:id?", controller.getMockQuestions);
 router.get("/shared_quiz_questions/:originUserId/:quizId", controller.getSpecifiedUserQuiz);
 router.get("/results/:id", controller.getUserResults);
+router.get("/quiz_results/:id", controller.getOwnCustomQuizResults);
 // **NEW mongoDB route**
 router.post("/post/create_quiz/:id", controller.createQuiz);
 /* POST and send compiled stundent result data */
