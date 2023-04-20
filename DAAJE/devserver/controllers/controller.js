@@ -218,12 +218,42 @@ exports.getUserResults = async (req, res) => {
     res.status(200).send(results);
 };
 exports.getOwnCustomQuizResults = async (req, res) => {
-/*   const populatedList = await User.findOne({_id: req.params.id})
-    .populate({path: "created.quiz.usersTakenQuiz"})
-    ;
-  console.log(populatedList); */
-  const mock = await User.find().select("results");
-  console.log(mock);
-  res.status(200).send(mock);
+  const uid = mongoose.Types.ObjectId(req.params.id);
+  //get an array of the users who have taken our quizes
+  const userList = await User.aggregate([
+    {
+      '$match': {
+        'username': 'elis'
+      }
+    }, {
+      '$project': {
+        'created.quiz': {
+          '$filter': {
+            'input': '$created.quiz', 
+            'as': 'quizes', 
+            'cond': 1
+          }
+        }
+      }
+    }, {
+      '$project': {
+        'created.quiz.usersTakenQuiz': 1, 
+        'created.quiz._id': 1
+      }
+    }, {
+      '$replaceRoot': {
+        'newRoot': '$created'
+      }
+    }
+  ]);
+  //get all users from their array id:s. Deconstruct and extract the result data and bundle it with the corresponing quizId
+  for(const i of userList[0].quiz) {
+    let result = await User.find({"_id": {$in: i.usersTakenQuiz}}).select(["results", {"results.takenQuizId": i._id}]);
+    i.sessionResults = result;
+    // remove unneccesary array after usage
+    delete i.usersTakenQuiz;
+  }
+  //send the relevant array
+  res.status(200).send(userList[0].quiz);
 };
 exports.passport = passport;
