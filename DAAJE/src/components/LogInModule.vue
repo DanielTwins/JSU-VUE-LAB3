@@ -34,7 +34,7 @@ export default {
         await axios.post("http://localhost:8080/post/new_user", {
           username: this.userName,
           email: this.signEmail,
-          password: this.userName,
+          password: this.signPassword,
         });
         this.showLogin(false);
         this.userName = '';
