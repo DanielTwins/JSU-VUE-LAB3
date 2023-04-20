@@ -217,4 +217,13 @@ exports.getUserResults = async (req, res) => {
     console.log(results);
     res.status(200).send(results);
 };
+exports.getOwnCustomQuizResults = async (req, res) => {
+/*   const populatedList = await User.findOne({_id: req.params.id})
+    .populate({path: "created.quiz.usersTakenQuiz"})
+    ;
+  console.log(populatedList); */
+  const mock = await User.find().select("results");
+  console.log(mock);
+  res.status(200).send(mock);
+};
 exports.passport = passport;
