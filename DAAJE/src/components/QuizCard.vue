@@ -36,9 +36,6 @@ const router = useRouter();
 const goToQuiz = () => {
   router.push(`/quiz/${quiz.id}`);
 };
-const takeOtherUserQuiz = () => {
-  router.push(`/quiz/${quiz.id}`);
-};
 </script>
 
 <style scoped>

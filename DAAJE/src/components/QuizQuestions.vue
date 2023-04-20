@@ -17,13 +17,14 @@ export default {
     const userid = localStorage.getItem("usertoken");
     const result = await axios.get((userid? `http://localhost:8080/quiz_questions/${userid}` : "http://localhost:8080/quiz_questions"));
     const quizes = ref(result.data);
-
+    const ouid = "6438362cf7eacfc8b8a276d1";//sample
+    const quizId = "643872d185dd4fbabfa27d8b";//sample
     // add new list of custom quizzes from another user
-    const getCustomQuizFromElis = await axios.get(("http://localhost:8080/shared_quiz_questions/643d4871958ac15c967dd034/643d6c582b816b803c863088"));
-
+    const getCustomQuizFromElis = await axios.get((`http://localhost:8080/shared_quiz_questions/${ouid}/${quizId}`));
+    console.log(getCustomQuizFromElis);
     // använder slize för att endast få den sista frågan med.
     // för att undvika dem 3 första vanliga som redan finns.
-    const showCustomQuizFromElis = ref(getCustomQuizFromElis.data.slice(4));
+    const showCustomQuizFromElis = ref(getCustomQuizFromElis.data);
 
     // konsol loggar för att se att dem verkar identiska
     console.log(showCustomQuizFromElis);

@@ -24,8 +24,11 @@ const resultStore = useResultStore();
 resultStore.$reset();
 
 const userid = localStorage.getItem("usertoken");
+const ouid = "6438362cf7eacfc8b8a276d1";//sample
+const quizId = "643872d185dd4fbabfa27d8b";//sample
 const result = await axios.get(`http://localhost:8080/quiz_questions/${userid}`);
-const quizes = ref(result.data);
+const resultCustom = await axios.get(`http://localhost:8080/shared_quiz_questions/${ouid}/${quizId}`);
+const quizes = ref([...result.data, ...resultCustom.data]);
 
 const quizToShow = quizes.value.find((quiz) => quiz.id === paramsId);
 const quizStatus = computed(
