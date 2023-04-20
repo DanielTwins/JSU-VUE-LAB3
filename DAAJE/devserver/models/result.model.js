@@ -11,7 +11,11 @@ const result = mongoose => {
                 resultData: {
                     type: Array,
                     required: true
-                  },       
+                  },     
+                dateTaken: {
+                    type: Date,
+                    default: Date.now
+                }  
             },
             {
                 _id: true,
