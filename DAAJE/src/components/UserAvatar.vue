@@ -28,12 +28,10 @@ export default {
       this.showLogin = !this.showLogin;
     },
     async userLogIn(status) {
-      const userId = await localStorage.getItem('usertoken');
-      console.log(userId)
-      if (userId) {
-        // get userName from userToken
-        this.userName = 'Quizninja';
-        this.avatarImg = userImage
+      const usertoken = JSON.parse(localStorage.getItem('usertoken'));
+      if (usertoken) {
+        this.userName = usertoken.username;
+        this.avatarImg = userImage;
         this.userLoggedIn = true;
       }
     },

@@ -25,8 +25,8 @@ export default {
   },
   async setup() { // hela setupen här bör skrivas om med hjälp av en fetch till results/uid som nedan
     const resultStore = useResultStore();
-    const userid = localStorage.getItem("usertoken");
-    const userResults = await axios(`http://localhost:8080/results/${userid}`);
+    const usertoken = JSON.parse(localStorage.getItem("usertoken"));
+    const userResults = await axios(`http://localhost:8080/results/${usertoken.id}`);
     
     const { fetchedResults } = resultStore;
     console.log(fetchedResults);

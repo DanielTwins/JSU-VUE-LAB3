@@ -32,7 +32,7 @@ router.post("/post/login", passport.authenticate("local"), (req, res, next) => {
         return res.status(500).send(err);
       }
       console.log(`success auth for ${req.user}`);
-      return res.status(200).send(user.id);
+      return res.status(200).send({ id: user.id, username: user.username });
     });
   })(req, res, next);
 });

@@ -28,10 +28,10 @@ import ResultCard from '../components/ResultCard.vue';
 import axios from 'axios';
 export default {
   async setup() {
-    const userid = localStorage.getItem('usertoken');
+    const usertoken = JSON.parse(localStorage.getItem('usertoken'));
     const result = await axios.get(
-      userid
-        ? `http://localhost:8080/quiz_questions/${userid}`
+      usertoken
+        ? `http://localhost:8080/quiz_questions/${usertoken.id}`
         : 'http://localhost:8080/quiz_questions'
     );
     const quizes = ref(result.data);
