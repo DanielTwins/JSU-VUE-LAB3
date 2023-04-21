@@ -54,7 +54,8 @@ export default {
           },
         );
         if (usertoken) {
-          localStorage.setItem('usertoken', usertoken.data); // store this in pinia instead? @johan
+          console.log(usertoken.data);
+          localStorage.setItem('usertoken', JSON.stringify(usertoken.data)); // store this in pinia instead? @johan
           this.$loggedInStatus = true; // this bool is for tracking logged in status
           // call methods here to update GUI with user details @chris
         }
