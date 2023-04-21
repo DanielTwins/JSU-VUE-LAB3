@@ -10,54 +10,6 @@
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
     <script>
-      function findUser() {                                     //logged in uid required in request
-        console.log(fetch("http://localhost:8080/post/create_quiz/642ecea4a038a496cce707cc", {
-          method: 'POST',
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(
-            {
-                "id": "e37646b0-0c36-4c12-8e78-bb3a40d597cf",
-                "img": "/img/placeholder_img.jpg",
-                "name": "Elis3",
-                "questions": [
-                    {
-                        "text": "adgdag",
-                        "options": [
-                            {
-                                "id": 1,
-                                "text": "dagadg",
-                                "label": "A",
-                                "isCorrect": true
-                            },
-                            {
-                                "id": 2,
-                                "text": "aa",
-                                "label": "B",
-                                "isCorrect": false
-                            },
-                            {
-                                "id": 3,
-                                "text": "dagda",
-                                "label": "C",
-                                "isCorrect": false
-                            },
-                            {
-                                "id": 4,
-                                "text": "hej...",
-                                "label": "D",
-                                "isCorrect": false
-                            }
-                        ],
-                        "correctAnswer": 1
-                    }
-                ],
-                "category": "React",
-                "language": "Svenska"
-            }
-          )
-        })
-       );
-      };
     </script>
   </body>
 </html>

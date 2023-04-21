@@ -151,13 +151,13 @@ export default {
             if (this.selectedLanguage) {
                 postBody.language = this.selectedLanguage
             } /*Om det finns ett valt språk, så lägger denna till det som det första elementet i postBody arrayen. */
-            const userid = localStorage.getItem("usertoken");
-            if (!userid) {
+            const usertoken = JSON.parse(localStorage.getItem("usertoken"));
+            if (!usertoken) {
                 return alert("You must be logged in to create a quiz");
             }
             try {
                 const response = await fetch(
-                    `http://localhost:8080/post/create_quiz/${userid}`,
+                    `http://localhost:8080/post/create_quiz/${usertoken.id}`,
                     {
                         method: 'POST',
                         headers: {

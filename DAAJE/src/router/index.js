@@ -1,3 +1,5 @@
+// import { ref } from 'vue';
+// import axios from 'axios';
 import HomePage from '../views/HomePage.vue';
 import AboutPage from '../views/AboutPage.vue';
 import QuizPage from '../views/QuizPage.vue';
@@ -5,12 +7,11 @@ import QuizCategory from '../views/QuizCategory.vue';
 import QuizView from '../views/QuizView.vue';
 import NotFound from '../views/NotFound.vue';
 import ResultsPage from '../views/ResultsPage.vue';
+import ResultsView from '../views/ResultsView.vue'
 import CreateQuizPage from '../views/CreateQuizPage.vue';
 
-import { ref } from 'vue';
-import axios from 'axios';
-const result = await axios.get('http://localhost:8080/quiz_questions');
-const quizes = ref(result.data);
+// const result = await axios.get('http://localhost:8080/quiz_questions');
+// const quizes = ref(result.data);
 
 const routes = [
   {
@@ -38,7 +39,7 @@ const routes = [
     path: '/quiz/:id',
     name: 'QuizView',
     props: (route) => ({ ...route.params, id: route.params.id }),
-/*     beforeEnter(to, from) {
+    /*     beforeEnter(to, from) {
       const exists = quizes.value.find((quiz) => quiz.id === to.params.id);
       if (!exists) return {
           name: 'NotFound',
@@ -54,6 +55,11 @@ const routes = [
     path: '/results',
     name: 'ResultsPage',
     component: ResultsPage,
+  },
+  {
+    path: '/results-view',
+    name: 'ResultsView',
+    component: ResultsView,
   },
   {
     path: '/create-quiz',

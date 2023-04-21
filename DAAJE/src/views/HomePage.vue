@@ -44,7 +44,7 @@ export default {
           cardTitle: "Review prior results",
           cardDescription: "Review students previous results",
           cardButton: "Action",
-          path: "/quiz",
+          path: "/results-view",
         },
       ],
     //   imgPath: "",

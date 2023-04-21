@@ -1,6 +1,8 @@
+<!-- eslint-disable -->
 <script>
-import userImage from "../imgs/Richard.jpg";
-import LoginModule from "./LogInModule.vue";
+import userImage from '../imgs/avatar_placeholder.png';
+import placeHolderAvatarImg from '../imgs/placeholderAvatarImg.png';
+import LoginModule from './LogInModule.vue';
 
 export default {
   components: {
@@ -10,41 +12,71 @@ export default {
     return {
       showLogin: false,
       userLoggedIn: false,
-      avatarImg: userImage,
+      avatarImg: placeHolderAvatarImg,
+      userName: 'Hello Quizzer!',
+      userRole: '',
     };
   },
+  created(){
+    this.userLogIn()
+  },
   methods: {
-    received(boolean) { this.showLogin = boolean; },
+    received(boolean) {
+      this.showLogin = boolean;
+    },
     toggleShowLogin() {
       this.showLogin = !this.showLogin;
     },
+    async userLogIn(status) {
+      const usertoken = JSON.parse(localStorage.getItem('usertoken'));
+      if (usertoken) {
+        this.userName = usertoken.username;
+        this.avatarImg = userImage;
+        this.userLoggedIn = true;
+      }
+    },
     logOutUser() {
-      console.log('Loggar ut');
+      localStorage.clear();
+      this.userName = 'Hello Quizzer!';
+      this.avatarImg = placeHolderAvatarImg
+      this.userLoggedIn = false;
     },
   },
 };
 </script>
-
+<!-- eslint-disable -->
 <template>
   <section class="avatar-wrapper">
     <div class="avatar-container">
-      <img class="avatar-image" src="../imgs/Richard.jpg" />
+      <img class="avatar-image" :src=avatarImg />
     </div>
     <div class="avatar-info">
-      <div class="user-info">Hello, Richard</div>
-      <div class="user-info">JavaScript Educator</div>
+      <p class="user-info">{{ userName }}</p>
+      <p class="user-info">{{ userRole }}</p>
       <div class="login-user-btn-container">
-        <button v-if="!userLoggedIn" @click="toggleShowLogin" class="login-user-btn">Logga in / Skapa konto</button>
-        <button v-if="userLoggedIn" @click="logOutUser" class="logout-user-btn">Logga ut</button>
+        <button
+          v-if="!userLoggedIn"
+          @click="toggleShowLogin"
+          class="login-user-btn"
+        >
+          Logga in / Skapa konto
+        </button>
+          <button v-if="userLoggedIn" @click="logOutUser" class="logout-user-btn">
+          Logga ut
+        </button>
       </div>
     </div>
   </section>
-  <LoginModule @booleanToParent="received" v-show="showLogin"/>
+  <LoginModule
+    @loggedIn="userLogIn"
+    @booleanToParent="received"
+    v-show="showLogin"
+  />
 </template>
-
+<!-- eslint-disable -->
 <style>
 .avatar-wrapper {
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
   display: flex;
   flex-direction: row;
   gap: 0.65rem;
@@ -76,12 +108,24 @@ export default {
   text-transform: capitalize;
 }
 
-.login-user-btn{
-    padding-top: .5rem;
-    font-weight: bold;
-    color: var(--white);
-    background: transparent;
-    border: none;
-    cursor: pointer;
+.user-info {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.login-user-btn,
+.logout-user-btn {
+  padding-top: 0.5rem;
+  font-weight: bold;
+  color: var(--white);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.logout-user-btn {
+  color: var(--light-purple);
 }
 </style>

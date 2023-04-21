@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <script setup>
 import { useRoute } from "vue-router";
 import { ref, computed } from "vue";
@@ -22,10 +23,12 @@ const resultStore = useResultStore();
 // empty resultStore for new quiz
 resultStore.$reset();
 
-const userid = localStorage.getItem("usertoken");
-const result = await axios.get(`http://localhost:8080/quiz_questions/${userid}`);
-console.log(result);
-const quizes = ref(result.data);
+const usertoken = JSON.parse(localStorage.getItem("usertoken"));
+const ouid = "6438362cf7eacfc8b8a276d1";//sample
+const quizId = "643872d185dd4fbabfa27d8b";//sample
+const result = await axios.get(`http://localhost:8080/quiz_questions/${usertoken.id}`);
+const resultCustom = await axios.get(`http://localhost:8080/shared_quiz_questions/${ouid}/${quizId}`);
+const quizes = ref([...result.data, ...resultCustom.data]);
 
 const quizToShow = quizes.value.find((quiz) => quiz.id === paramsId);
 const quizStatus = computed(
@@ -49,11 +52,12 @@ const onChoiceSelected = async (isCorrect) => {
     //                 ** Await necessary when communicating with the store and sending data.
     //                 Incomplete objects were being sent!! **
     const resultData = await resultStore.results;
-
-    axios.post('http://localhost:8080/post/result?id=01', {
+                                                      //the _id of the taken quiz **add origin user id to end of url. sample user provided
+    axios.post(`http://localhost:8080/post/result/${usertoken.id}/${quizToShow._id}/643d4871958ac15c967dd034`, {
       resultData,
     })
       .then((response) => {
+        console.log(response);
         resultStore.addResultSum({ response });
       })
       .catch((error) => {
