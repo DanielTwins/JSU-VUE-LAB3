@@ -3,8 +3,8 @@ This quiz app helps teachers track their student progress after the morning lect
 
 This a free full-stack quiz tool that helps you as a teacher (or for self-study). We are in the proccess of building the Quiz App right now and going to add more quiz questions over the next couple of weeks.
 
-Live link
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f9dc4e9b-5312-41d5-a6e4-65e371396655/deploy-status)](https://app.netlify.com/sites/quiz-app-for-educators/deploys)
+Live link, 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f9dc4e9b-5312-41d5-a6e4-65e371396655/deploy-status)](https://quiz-app-for-educators.netlify.app)
 
 ## Homescreen
 [![Quiz App Landing Page](http://jhellberg.com/images/quiz-app-landing-page.jpg)](#)
