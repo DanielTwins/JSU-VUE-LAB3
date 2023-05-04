@@ -3,7 +3,7 @@
 import { useRoute } from "vue-router";
 import { ref, computed } from "vue";
 import axios from "axios";
-import { useResultStore } from "../stores/ResultStore";
+import { useResultStore } from "../stores/ResultStore.vue";
 import Confetti from "../components/Confetti.vue";
 import TheQuestion from "../components/TheQuestion.vue";
 import TheResults from "../components/TheResults.vue";
@@ -26,8 +26,8 @@ resultStore.$reset();
 const usertoken = JSON.parse(localStorage.getItem("usertoken"));
 const ouid = "6438362cf7eacfc8b8a276d1";//sample
 const quizId = "643872d185dd4fbabfa27d8b";//sample
-const result = await axios.get(`http://localhost:8080/quiz_questions/${usertoken.id}`);
-const resultCustom = await axios.get(`http://localhost:8080/shared_quiz_questions/${ouid}/${quizId}`);
+const result = axios.get(`http://localhost:8080/quiz_questions/${usertoken.id}`);
+const resultCustom = axios.get(`http://localhost:8080/shared_quiz_questions/${ouid}/${quizId}`);
 const quizes = ref([...result.data, ...resultCustom.data]);
 
 const quizToShow = quizes.value.find((quiz) => quiz.id === paramsId);
