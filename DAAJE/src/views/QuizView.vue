@@ -3,7 +3,7 @@
 import { useRoute } from "vue-router";
 import { ref, computed } from "vue";
 import axios from "axios";
-import { useResultStore } from "../stores/ResultStore.vue";
+import { useResultStore } from "../stores/ResultStore.js";
 import Confetti from "../components/Confetti.vue";
 import TheQuestion from "../components/TheQuestion.vue";
 import TheResults from "../components/TheResults.vue";
